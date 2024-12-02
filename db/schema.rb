@@ -10,8 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_02_145040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "animals", force: :cascade do |t|
+    t.string "name"
+    t.string "species"
+    t.integer "age"
+    t.text "description"
+    t.string "breed"
+    t.float "price"
+    t.boolean "availability"
+    t.bigint "users_id", null: false
+    t.string "photos"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_animals_on_users_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
+    t.bigint "animals_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animals_id"], name: "index_bookings_on_animals_id"
+    t.index ["users_id"], name: "index_bookings_on_users_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.float "rating"
+    t.text "content"
+    t.bigint "bookings_id", null: false
+    t.string "photos"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bookings_id"], name: "index_reviews_on_bookings_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.text "info"
+    t.string "avatar"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "animals", "users", column: "users_id"
+  add_foreign_key "bookings", "animals", column: "animals_id"
+  add_foreign_key "bookings", "users", column: "users_id"
+  add_foreign_key "reviews", "bookings", column: "bookings_id"
 end
