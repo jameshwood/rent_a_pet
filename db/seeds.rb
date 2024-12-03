@@ -7,6 +7,7 @@
 
 
 # Clear existing data
+User.destroy_all
 
 
 # Create users
