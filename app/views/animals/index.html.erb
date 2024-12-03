@@ -1,13 +1,41 @@
 
 <div class="animal-grid">
   <% @animals.each do |animal| %>
-    <div class="animal-card">
-      <img src="<%= animal.photos %>" alt="<%= animal.name %>" class="animal-image" />
-      <p class="animal-name"><%= animal.name %></p>
-      <p class="animal-price"><%= animal.price.to_i %>$</p>
-      <p class="animal-rating">
-        Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
-      </p>
+    <div class="animal-card mb-4">
+      <!-- Carousel -->
+      <% if animal.photos.attached? %>
+        <div id="carouselAnimal<%= animal.id %>" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% animal.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index == 0 %>">
+                <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 300, width: 400, crop: :fill %>
+              </div>
+            <% end %>
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnimal<%= animal.id %>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselAnimal<%= animal.id %>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      <% else %>
+        <!-- Placeholder Image for No Photos -->
+        <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image d-block w-100" height="300" width="400" />
+      <% end %>
+
+      <!-- Animal Info -->
+      <div class="animal-details">
+        <p class="animal-name"><%= animal.name %></p>
+        <p class="animal-price"><%= animal.price.to_i %>$</p>
+        <p class="animal-rating">
+          Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
+        </p>
+        <%= link_to "View Details", animal_path(animal), class: "btn btn-primary mt-2" %>
+      </div>
     </div>
   <% end %>
 </div>
