@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'animals/new'
+  get 'animals/create'
   devise_for :users
   root to: "animals#index"
 
-  resources :animals, only: :index
+  resources :animals, only: [:new, :create, :show, :index]
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
