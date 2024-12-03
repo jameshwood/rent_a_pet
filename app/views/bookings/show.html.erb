@@ -1,0 +1,21 @@
+<h1>Booking Details</h1>
+
+<img src="<%= @booking.animal.photos %>" alt="<%= @booking.animal.name %>"/>
+<p><strong>Name:</strong> <%= @booking.animal.name %></p>
+<p><strong>Species:</strong> <%= @booking.animal.species %></p>
+<p><strong>Start Time:</strong> <%= @booking.start_date_time.strftime("%B %d, %Y %H:%M") %></p>
+<p><strong>End Time:</strong> <%= @booking.end_date_time.strftime("%B %d, %Y %H:%M") %></p>
+
+<% if @booking.reviews.any? %>
+  <h2>Review:</h2>
+  <ul>
+    <% @booking.reviews.each do |review| %>
+      <li>
+        <p><strong>Rating:</strong> <%= review.rating %>/10</p>
+        <p><strong>Content:</strong> <%= review.content %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No review for this booking yet.</p>
+<% end %>
