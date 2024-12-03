@@ -1,0 +1,31 @@
+<h1 class="centered-title">Bookings</h1>
+
+<div class="bookings-container">
+  <h2><%= current_user.first_name %>'s Bookings</h2>
+  <div class="booking-cards">
+    <% @made_bookings.each do |booking| %>
+      <div class="booking-card">
+        <h3>Booking Nr.<%= booking.id %></h3>
+        <p>Animal: <%= booking.animal.name %>, <%= booking.animal.species %></p>
+        <p>Start: <%= booking.start_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
+        <p>End: <%= booking.end_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="bookings-container">
+  <h2>Animals booked</h2>
+  <div class="booking-cards">
+    <% current_user.animals.each do |animal| %>
+      <% @received_bookings.each do |booking| %>
+        <div class="booking-card">
+          <h3><%= booking.animal.name %></h3>
+          <p>Start: <%= booking.start_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
+          <p>End: <%= booking.end_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
+          <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
