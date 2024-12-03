@@ -38,4 +38,4 @@ class AnimalsController < ApplicationController
     params.require(:animal).permit(:name, :species, :age, :price, :availability, :photos, :description)
   end
 end
-``
+

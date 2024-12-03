@@ -1,5 +1,3 @@
-<h1>Animals#new</h1>
-<p>Find me in app/views/animals/new.html.erb</p>
 <h1>Create a Listing</h1>
 
 <%= simple_form_for @animal do |f| %>
@@ -32,7 +30,7 @@
 
 
   <div class="form-group">
-    <%= f.input :photos, label: "Photos (URLs, separated by commas)", input_html: { class: "form-control" } %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   </div>
 
   <div class="form-group">
