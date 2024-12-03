@@ -1,5 +1,9 @@
 class AnimalsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+
+
+  def index
+    @animals = Animal.all
+  end
 
   def new
     @animal = Animal.new()
