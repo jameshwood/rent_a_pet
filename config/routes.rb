@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "animals#index"
 
-  # resources :users, only: [ :show, :index ] do
-  #   resources :animals, except: [ :destroy ]
-  #   resources :bookings, except: [ :destroy ]
-  #   resources :reviews, except: [ :destroy ]
-  # end
-
-  # resources :animals do
-  #   resources :bookings
-  # end
+  resources :animals, only: :index
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

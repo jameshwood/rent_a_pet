@@ -1,0 +1,14 @@
+
+
+<div class="animal-grid">
+  <% @animals.each do |animal| %>
+    <div class="animal-card">
+      <%= image_tag "mellow-804w.jpg", alt: animal.name, class: "animal-image" %>
+      <p class="animal-name"><%= animal.name %></p>
+      <p class="animal-price"><%= animal.price.to_i %>$</p>
+    </div>
+    <div class="animal-rating">
+      <p></p>
+    </div>
+  <% end %>
+</div>
