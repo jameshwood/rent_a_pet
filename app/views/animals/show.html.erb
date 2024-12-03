@@ -1,0 +1,24 @@
+<h1 class="text-center mt-3">Welcome to my profile! </h1>
+<i class="fa-solid fa-paw-simple" style="color: #FFD43B;"></i>
+
+<div class="container">
+<div class="card" style="width: 18rem;">
+  <img src="https://media.gettyimages.com/id/173893247/de/foto/kaninchen-oryctolagus-cuniculus.jpg?s=1024x1024&w=gi&k=20&c=CMuTEsPPe6BhnXRrc4AcVk87NrGqtVr1SPLWpAg9xbw=" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= @animal.name %></h5>
+    <h6>I'm <%= @animal.age %> years old!</h6>
+    <p class="card-text"><%= @animal.description %></p>
+  </div>
+</div>
+<div class="details mt-5">
+<h2>More details about me:</h2>
+<ul class="animal_details">
+<li><strong>Species: </strong><%= @animal.species %></li>
+<li><strong>Price: </strong><%= @animal.price %>$</li>
+
+<button class="btn btn-primary mt-3">Rent me!</button>
+</ul>
+</div>
+
+
+</div>
