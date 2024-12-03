@@ -1,14 +1,13 @@
 
-
 <div class="animal-grid">
   <% @animals.each do |animal| %>
     <div class="animal-card">
-      <%= image_tag "mellow-804w.jpg", alt: animal.name, class: "animal-image" %>
+      <img src="<%= animal.photos %>" alt="<%= animal.name %>" class="animal-image" />
       <p class="animal-name"><%= animal.name %></p>
       <p class="animal-price"><%= animal.price.to_i %>$</p>
-    </div>
-    <div class="animal-rating">
-      <p></p>
+      <p class="animal-rating">
+        Rating: <%= animal.reviews.any? ? "#{animal.average_rating.to_i} / 10" : "No reviews yet" %>
+      </p>
     </div>
   <% end %>
 </div>

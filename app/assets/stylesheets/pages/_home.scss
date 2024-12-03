@@ -1,21 +1,25 @@
 // Specific CSS for your home-page
 .animal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+  justify-content: space-between;
   padding: 20px;
   margin: 0 auto;
   max-width: 1400px;
 }
 
 .animal-card {
+  box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
+  height: 250px;
+  width: 250px;
   padding: 10px;
   background-color: white;
+  justify-content: space-between;
 }
 
 .animal-image {
@@ -33,6 +37,11 @@
 }
 
 .animal-price {
+  font-size: 16px;
+  text-align: left;
+}
+
+.animal-rating {
   font-size: 16px;
   text-align: left;
 }
