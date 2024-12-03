@@ -3,7 +3,7 @@
 
 <div class="container">
 <div class="card" style="width: 18rem;">
-  <img src="https://media.gettyimages.com/id/173893247/de/foto/kaninchen-oryctolagus-cuniculus.jpg?s=1024x1024&w=gi&k=20&c=CMuTEsPPe6BhnXRrc4AcVk87NrGqtVr1SPLWpAg9xbw=" class="card-img-top" alt="...">
+  <img src="@animal.photos" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><%= @animal.name %></h5>
     <h6>I'm <%= @animal.age %> years old!</h6>
@@ -15,10 +15,9 @@
 <ul class="animal_details">
 <li><strong>Species: </strong><%= @animal.species %></li>
 <li><strong>Price: </strong><%= @animal.price %>$</li>
+<li><strong>Availability:</strong> <%= @animal.availability %></li>
 
 <button class="btn btn-primary mt-3">Rent me!</button>
 </ul>
 </div>
-
-
 </div>
