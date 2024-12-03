@@ -5,7 +5,7 @@
   <div class="booking-cards">
     <% @made_bookings.each do |booking| %>
       <div class="booking-card">
-        <h3>Booking Nr.<%= booking.id %></h3>
+        <h3><%= link_to "Booking Nr.#{booking.id}", booking_path(booking), class: "booking-link" %></h3>
         <p>Animal: <%= booking.animal.name %>, <%= booking.animal.species %></p>
         <p>Start: <%= booking.start_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
         <p>End: <%= booking.end_date_time.strftime("%d/%m/%Y, %H:%M") %></p>

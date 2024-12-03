@@ -6,7 +6,7 @@
       <p class="animal-name"><%= animal.name %></p>
       <p class="animal-price"><%= animal.price.to_i %>$</p>
       <p class="animal-rating">
-        Rating: <%= animal.reviews.any? ? "#{animal.average_rating.to_i} / 10" : "No reviews yet" %>
+        Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
       </p>
     </div>
   <% end %>
