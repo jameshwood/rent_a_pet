@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <!-- Navbar Brand (Home Link) -->
+    <a class="navbar-brand" href="<%= root_path %>">Rent A Pet</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left-aligned Links -->
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_animal_path %>">New Listing</a>
+          </li>
+        <% end %>
+      </ul>
+
+      <!-- Right-aligned Links -->
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <span class="navbar-text">
+              Welcome, <%= current_user.email %>!
+            </span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign out", destroy_user_session_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">Sign Up</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
