@@ -34,7 +34,7 @@
         <p class="animal-rating">
           Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
         </p>
-        <%= link_to "View Details", animal_path(animal), class: "btn btn-primary mt-2" %>
+
       </div>
     </div>
   <% end %>
