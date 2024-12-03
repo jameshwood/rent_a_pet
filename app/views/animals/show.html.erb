@@ -17,7 +17,9 @@
 <li><strong>Price: </strong><%= @animal.price %>$</li>
 <li><strong>Availability:</strong> <%= @animal.availability %></li>
 
-<button class="btn btn-primary mt-3">Rent me!</button>
+<%= link_to "Book me!",  new_animal_booking_path(@animal), class: "btn btn-primary" %>
 </ul>
 </div>
 </div>
+
+ <%# <%= link_to "Rent me!", new_animal_booking_path %>

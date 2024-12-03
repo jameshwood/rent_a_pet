@@ -9,6 +9,10 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
   end
 
+  def index
+    @animals = Animal.all
+  end
+
   def new
     @animal = Animal.new()
   end

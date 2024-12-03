@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  # get 'animals/new'
+  # get 'animals/create'
+>>>>>>> master
   devise_for :users
   root to: "animals#index"
 
@@ -12,11 +17,13 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
   get "/animals/:id", to: "animals#show"
+  #  get "bookings/:id/review", to: "reviews/show"
   # Defines the root path route ("/")
   # root "posts#index"
 
   # DISPLAYING BOOKINGS
   # get 'users/:id/bookings', to: 'users#index'
-  resources :bookings, only: [:index, :show]
-
+  resources :bookings, only: [:index, :show] do
+    resources :reviews, only: [:index, :new, :create]
+  end
 end
