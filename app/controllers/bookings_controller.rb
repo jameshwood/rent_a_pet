@@ -21,6 +21,10 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @animal = Animal.find(params[:animal_id])
+  end
+
   private
 
   def booking_params
