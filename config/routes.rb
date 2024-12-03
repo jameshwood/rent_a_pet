@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
+  get 'animals/new'
+  get 'animals/create'
   devise_for :users
   root to: "pages#home"
 
-  # resources :users, only: [ :show, :index ] do
-  #   resources :animals, except: [ :destroy ]
-  #   resources :bookings, except: [ :destroy ]
-  #   resources :reviews, except: [ :destroy ]
-  # end
 
-  # resources :animals do
-  #   resources :bookings
-  # end
+  resources :animals, only: [:new, :create, :show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
