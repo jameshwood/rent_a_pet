@@ -22,32 +22,32 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_02_145040) do
     t.string "breed"
     t.float "price"
     t.boolean "availability"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.string "photos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_animals_on_users_id"
+    t.index ["user_id"], name: "index_animals_on_user_id"
   end
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "start_date_time"
     t.datetime "end_date_time"
-    t.bigint "animals_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "animal_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["animals_id"], name: "index_bookings_on_animals_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
+    t.index ["animal_id"], name: "index_bookings_on_animal_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.float "rating"
     t.text "content"
-    t.bigint "bookings_id", null: false
+    t.bigint "booking_id", null: false
     t.string "photos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bookings_id"], name: "index_reviews_on_bookings_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,8 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_02_145040) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "animals", "users", column: "users_id"
-  add_foreign_key "bookings", "animals", column: "animals_id"
-  add_foreign_key "bookings", "users", column: "users_id"
-  add_foreign_key "reviews", "bookings", column: "bookings_id"
+  add_foreign_key "animals", "users"
+  add_foreign_key "bookings", "animals"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "bookings"
 end

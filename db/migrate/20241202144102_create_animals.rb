@@ -8,7 +8,7 @@ class CreateAnimals < ActiveRecord::Migration[7.1]
       t.string :breed
       t.float :price
       t.boolean :availability
-      t.references :users, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
       t.string :photos
 
       t.timestamps
