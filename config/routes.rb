@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
 
-  resources :animals, only: [:new, :create, :show]
-
+  resources :animals, only: [:new, :create, :show] do
+    resources :bookings, only: [:new, :create]
+  end 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
