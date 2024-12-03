@@ -17,6 +17,6 @@ Rails.application.routes.draw do
 
   # DISPLAYING BOOKINGS
   # get 'users/:id/bookings', to: 'users#index'
-  resources :bookings, only: [:index]
-  
+  resources :bookings, only: [:index, :show]
+
 end
