@@ -1,1 +1,23 @@
-<h1>animal show</h1>
+<h1 class="text-center mt-3">Welcome to my profile! </h1>
+<i class="fa-solid fa-paw-simple" style="color: #FFD43B;"></i>
+
+<div class="container">
+<div class="card" style="width: 18rem;">
+  <img src="@animal.photos" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= @animal.name %></h5>
+    <h6>I'm <%= @animal.age %> years old!</h6>
+    <p class="card-text"><%= @animal.description %></p>
+  </div>
+</div>
+<div class="details mt-5">
+<h2>More details about me:</h2>
+<ul class="animal_details">
+<li><strong>Species: </strong><%= @animal.species %></li>
+<li><strong>Price: </strong><%= @animal.price %>$</li>
+<li><strong>Availability:</strong> <%= @animal.availability %></li>
+
+<button class="btn btn-primary mt-3">Rent me!</button>
+</ul>
+</div>
+</div>

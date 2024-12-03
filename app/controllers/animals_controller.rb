@@ -1,8 +1,7 @@
 class AnimalsController < ApplicationController
-
-
-  def index
-    @animals = Animal.all
+  before_action :authenticate_user!, only: [:new, :create]
+  def show
+    @animal = Animal.find(params[:id])
   end
 
   def new
