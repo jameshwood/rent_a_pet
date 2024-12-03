@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
-  get 'animals/new'
-  get 'animals/create'
+  # get 'animals/new'
+  # get 'animals/create'
   devise_for :users
   root to: "animals#index"
 
-  resources :animals, only: [:new, :create, :show, :index]
+  resources :animals, only: [:new, :create, :show, :index] do
+    resources :bookings, only: [:new, :create]
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-  get "/animals/:id", to: "animals#show"
+  # get "/animals/:id", to: "animals#show"
   # Defines the root path route ("/")
   # root "posts#index"
 
   # DISPLAYING BOOKINGS
   # get 'users/:id/bookings', to: 'users#index'
-  resources :bookings, only: [:index, :show]
-
+  resources :bookings, only: [:index]
 end
