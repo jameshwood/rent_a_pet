@@ -9,12 +9,29 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
   end
 
+  def index
+    @animals = Animal.all
+  end
+
   def new
     @animal = Animal.new()
   end
 
+  def index
+    @animals = Animal.all
+  end
+
+
   def create
     @animal = current_user.animals.new(animal_params)
+
+    @available_start = Date.parse(params[:animal][:available_start])
+    @available_end = Date.parse(params[:animal][:available_end])
+    if @available_start && @available_end
+      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
+    else
+      @animal.availability = false
+    end
     if @animal.save
       redirect_to animal_path(@animal)
     else
@@ -27,6 +44,6 @@ class AnimalsController < ApplicationController
   private
 
   def animal_params
-    params.require(:animal).permit(:name, :species, :age, :price, :availability, :photos, :description)
+    params.require(:animal).permit(:name, :species, :age, :price, :availability, :description, photos: [])
   end
 end

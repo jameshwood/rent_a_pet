@@ -11,11 +11,12 @@
   <ul>
     <% @booking.reviews.each do |review| %>
       <li>
-        <p><strong>Rating:</strong> <%= review.rating %>/10</p>
+        <p><strong>Rating:</strong> <%= review.rating %>/10 ⭐</p>
         <p><strong>Content:</strong> <%= review.content %></p>
       </li>
     <% end %>
   </ul>
 <% else %>
   <p>No review for this booking yet.</p>
+  <%= link_to "Write one here", new_booking_review_path(@booking), class: "btn btn-primary" %>
 <% end %>

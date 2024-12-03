@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @animal = Animal.find(params[:animal_id])
+    @booking = Booking.includes(:animal).find(params[:id])
   end
 
   private
