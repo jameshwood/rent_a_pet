@@ -25,6 +25,7 @@
           <p>End: <%= booking.end_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
           <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
         </div>
+        <%# <%= link_to "View my reviews!", booking_reviews_path %>
       <% end %>
     <% end %>
   </div>
