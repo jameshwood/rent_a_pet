@@ -1,0 +1,46 @@
+.centered-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Style the bookings container with padding and a white background */
+.bookings-container {
+  background-color: white;
+  padding: 20px;
+  margin: 0 15%; /* Margin on the left and right */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px; /* Space between sections */
+}
+
+/* Left-align the h2 headers */
+.left-aligned {
+  text-align: left;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Create the card layout for each booking */
+.booking-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+  gap: 20px;
+}
+
+/* Style individual booking cards */
+.booking-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 30%; /* Adjusts the width of each card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Add spacing between sections */
+.spacing {
+  height: 20px;
+}

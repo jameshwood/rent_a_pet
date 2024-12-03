@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   get 'animals/new'
   get 'animals/create'
   devise_for :users
-  root to: "pages#home"
+  root to: "animals#index"
 
-
-  resources :animals, only: [:new, :create, :show]
+  resources :animals, only: [:new, :create, :show, :index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,4 +14,9 @@ Rails.application.routes.draw do
   get "/animals/:id", to: "animals#show"
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # DISPLAYING BOOKINGS
+  # get 'users/:id/bookings', to: 'users#index'
+  resources :bookings, only: [:index]
+  
 end
