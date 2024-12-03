@@ -4,15 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "animals#index"
 
-<<<<<<< HEAD
 
-  resources :animals, only: [:new, :create, :show] do
+  resources :animals, only: [:new, :create, :show, :index] do
     resources :bookings, only: [:new, :create]
-  end 
-=======
-  resources :animals, only: [:new, :create, :show, :index]
-
->>>>>>> master
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -26,5 +21,5 @@ Rails.application.routes.draw do
   # DISPLAYING BOOKINGS
   # get 'users/:id/bookings', to: 'users#index'
   resources :bookings, only: [:index]
-  
+
 end
