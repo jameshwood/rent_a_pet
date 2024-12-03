@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   # DISPLAYING BOOKINGS
   # get 'users/:id/bookings', to: 'users#index'
-  resources :bookings, only: [:index] do
+  resources :bookings, only: [:index, :show] do
     resources :reviews, only: [:index, :new, :create]
   end
 end
