@@ -1,0 +1,18 @@
+<h1>Bookings</h1>
+<h2><%= @current_user.first_name %>'s Bookings</h2>
+<% @made_bookings.each do |booking| %>
+  <h3>Booking Nr.<%= booking.id %></h3>
+  <p>Animal: <%= booking.animal.name %>, <%= booking.animal.species %></p>
+  <p>Start: <%= booking.start_date_time %></p>
+  <p>End: <%= booking.end_date_time %></p>
+<% end %>
+
+<h2>Booked animals</h2>
+<% @current_user.animals.each do |animal| %>
+  <% @received_bookings.each do |booking| %>
+    <h3><%= booking.animal.name %></h3>
+    <p>Start: <%= booking.start_date_time %></p>
+    <p>End: <%= booking.end_date_time %></p>
+    <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+  <% end %>
+<% end %>

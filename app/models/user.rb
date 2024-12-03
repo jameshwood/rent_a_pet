@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :animals
-  has_many :bookings, through: :animals, as: :received_bookings
-  has_many :reviews, through: :bookings
   has_many :bookings
-  has_many :animals, through: :bookings, as: :booked_animals
+  has_many :reviews, through: :bookings
+  has_many :received_bookings, through: :animals, source: :bookings
+  has_many :booked_animals, through: :bookings, source: :animal
   validates :first_name, :last_name, :info, :email, presence: true
 end
