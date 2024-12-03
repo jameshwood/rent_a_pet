@@ -8,7 +8,10 @@
 
 # Clear existing data
 User.destroy_all
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 
 # Create users
 user1 = User.create!(first_name: "John", last_name: "Doe", info: "Loves animals and nature.", email: "john.doe@example.com", password: "password123")
