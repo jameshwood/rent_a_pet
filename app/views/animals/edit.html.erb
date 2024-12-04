@@ -1,6 +1,6 @@
-<h1>Create a Listing</h1>
+<h1>Edit Animal Listing</h1>
 
-<%= simple_form_for @animal,  html: { multipart: true } do |f| %>
+<%= simple_form_for @animal, html: { multipart: true } do |f| %>
   <% if @animal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this listing from being saved:</h2>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :species, :collection => %w(Cat Dog Rabbit Bird Horse Snake Turtle Hedgehog), label: "Species", input_html: { class: "form-control" } %>
+    <%= f.input :species, label: "Species", input_html: { class: "form-control" } %>
   </div>
 
   <div class="form-group">
@@ -29,12 +29,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :address, label: "address", input_html: { class: "form-control", step: 0.01 } %>
-  </div>
-
-
-  <div class="form-group">
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :photos, as: :file, label: "Add Photos (Optional)", input_html: { multiple: true } %>
   </div>
 
   <div class="form-group">
@@ -42,14 +37,20 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :available_start, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :available_start,
+            as: :string,
+            input_html: { value: @animal.available_start&.strftime("%Y-%m-%d"),
+            data: { controller: "datepicker" } } %>
   </div>
 
   <div class="form-group">
-    <%= f.input :available_end, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :available_end,
+            as: :string,
+            input_html: { value: @animal.available_end&.strftime("%Y-%m-%d"),
+            data: { controller: "datepicker" } } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Create Listing", class: "btn btn-primary" %>
+    <%= f.button :submit, "Update Listing", class: "btn btn-primary" %>
   </div>
 <% end %>

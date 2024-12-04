@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  # get 'animals/new'
-  # get 'animals/create'
   devise_for :users
   root to: "animals#index"
 
-  resources :animals, only: [:new, :create, :show, :index, :destroy] do
+  resources :animals, only: [:new, :create, :show, :index, :edit, :update, :destroy] do
     resources :bookings, only: [:new, :create]
   end
 
@@ -22,7 +20,7 @@ Rails.application.routes.draw do
 
   # DISPLAYING BOOKINGS
   # get 'users/:id/bookings', to: 'users#index'
-  resources :bookings, only: [:index, :show, :destroy] do
+  resources :bookings, only: [:index, :show, :edit, :update, :destroy] do
     resources :reviews, only: [:index, :new, :create]
   end
 end
