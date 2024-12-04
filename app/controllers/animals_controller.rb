@@ -30,7 +30,6 @@ class AnimalsController < ApplicationController
       else
         @animal.availability = false
       end
-      raise
     else
       @animal.availability = false
     end
