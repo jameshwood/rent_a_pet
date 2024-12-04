@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
   # get 'animals/new'
   # get 'animals/create'
->>>>>>> master
   devise_for :users
   root to: "animals#index"
 
