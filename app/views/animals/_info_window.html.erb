@@ -1,0 +1,9 @@
+<h2><%= animal.name %></h2>
+<p><%= animal.address %></p>
+
+<% if animal.photos.attached? %>
+  <%= image_tag animal.photos.first, style: "max-width: 100%; height: auto; display: block; object-fit: contain;", alt: "#{animal.name}'s photo" %>
+<% else %>
+  <p>No photos available</p>
+<% end %>
+

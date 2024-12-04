@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get "/animals/:id", to: "animals#show"
   get "/my_listings", to: "animals#my_listings"
+  get "/search", to: "animals#search"
 
   #  get "bookings/:id/review", to: "reviews/show"
   # Defines the root path route ("/")
