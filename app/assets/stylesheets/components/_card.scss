@@ -3,3 +3,36 @@
   flex-direction: column;
   height: auto;
 }
+
+body {
+  background-image: url("https://thumbs.dreamstime.com/b/cute-pet-animal-paw-print-background-fauna-fun-vector-331197648.jpg")
+}
+
+.animal-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.animal-image {
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.animal-details {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animal-price,
+.animal-species,
+.animal-description {
+  font-size: 1.2rem;
+}
+
+.animal-rating {
+  font-size: 1.1rem;
+}
