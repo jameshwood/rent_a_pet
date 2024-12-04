@@ -37,23 +37,11 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :available_start,
-              as: :string,
-              label: "Available Start (Optional)",
-              input_html: {
-                value: @animal.available_start ? @animal.available_start.strftime("%Y-%m-%d") : "",
-                data: { controller: "datepicker" }
-              } %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :available_end,
-              as: :string,
-              label: "Available End (Optional)",
-              input_html: {
-                value: @animal.available_end ? @animal.available_end.strftime("%Y-%m-%d") : "",
-                data: { controller: "datepicker" }
-              } %>
+  <%= f.input :availability,
+              as: :select,
+              label: "Availability",
+              collection: [["Available", true], ["Not Available", false]],
+              input_html: { class: "form-control" } %>
   </div>
 
   <div class="form-actions">

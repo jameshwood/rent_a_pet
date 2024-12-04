@@ -31,7 +31,6 @@ class AnimalsController < ApplicationController
       else
         @animal.availability = false
       end
-      raise
     else
       @animal.availability = false
     end
@@ -55,6 +54,7 @@ class AnimalsController < ApplicationController
     @available_start = params[:animal][:available_start].present? ? Date.parse(params[:animal][:available_start]) : nil
     @available_end = params[:animal][:available_end].present? ? Date.parse(params[:animal][:available_end]) : nil
 
+    raise
     if @available_start && @available_end
       @animal.availability = Date.today >= @available_start && Date.today <= @available_end
     else
