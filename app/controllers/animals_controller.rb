@@ -42,7 +42,6 @@ class AnimalsController < ApplicationController
         info_window_html: render_to_string(partial: "animals/info_window", locals: { animal: animal })
       }
     end
-    raise
     render :search
   end
 
