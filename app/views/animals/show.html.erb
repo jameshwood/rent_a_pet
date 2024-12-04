@@ -1,5 +1,30 @@
-<h1 class="text-center mt-3">Welcome to my profile! </h1>
-<i class="fa-solid fa-paw-simple" style="color: #FFD43B;"></i>
+<div class="container mt-5">
+  <div class="row">
+    <!-- Animal Image Section -->
+    <div class="col-md-6 mb-4">
+      <% if @animal.photos.attached? %>
+        <div id="carouselAnimal<%= @animal.id %>" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% @animal.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index == 0 %>">
+                <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 500, width: 600, crop: :fill %>
+              </div>
+            <% end %>
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnimal<%= @animal.id %>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselAnimal<%= @animal.id %>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      <% else %>
+        <img src="/placeholder.jpg" alt="<%= @animal.name %>" class="d-block w-100 animal-image" />
+      <% end %>
+    </div>
 
 <div class="container">
   <div class="card" style="width: 18rem;">
