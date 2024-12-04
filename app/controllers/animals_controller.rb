@@ -50,7 +50,6 @@ class AnimalsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def edit
     @animal = Animal.find(params[:id])
   end
@@ -74,25 +73,24 @@ class AnimalsController < ApplicationController
       flash.now[:alert] = "There was an error updating the animal listing."
       render :new, status: :unprocessable_entity
     end
-=======
+  end
+
   def destroy
     @animal.destroy
     redirect_to my_listings_path, status: :see_other
->>>>>>> master
   end
 
   private
 
-<<<<<<< HEAD
   def authorize_user!
     @animal = Animal.find(params[:id])
     unless @animal.user == current_user
       redirect_to animals_path, alert: "You are not authorized to edit this listing."
     end
-=======
+  end
+
   def set_animal
     @animal = Animal.find(params[:id])
->>>>>>> master
   end
 
   def animal_params
