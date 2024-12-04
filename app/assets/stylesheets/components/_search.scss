@@ -1,0 +1,16 @@
+.search-container {
+  display: flex;
+  gap: 20px; /* Space between columns */
+}
+
+.left-column {
+  flex: 1; /* Adjust to take remaining space */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+}
+
+.right-column {
+  flex: 1;
+  max-width: 50%; /* Or another value to control map width */
+  position: sticky;
+  top: 0; /* Makes the map sticky when scrolling */
+}
