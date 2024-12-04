@@ -9,18 +9,9 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
   end
 
-  def index
-    @animals = Animal.all
-  end
-
   def new
     @animal = Animal.new()
   end
-
-  def index
-    @animals = Animal.all
-  end
-
 
   def create
     @animal = current_user.animals.new(animal_params)

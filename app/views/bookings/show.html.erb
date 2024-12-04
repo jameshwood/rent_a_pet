@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Booking Details</h1>
 
 <img src="<%= @booking.animal.photos %>" alt="<%= @booking.animal.name %>"/>
@@ -18,5 +19,6 @@
   </ul>
 <% else %>
   <p>No review for this booking yet.</p>
-  <%= link_to "Write one here", new_booking_review_path(@booking), class: "btn btn-primary" %>
 <% end %>
+<button type="button" class="btn btn-success"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
+</div>
