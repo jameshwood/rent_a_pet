@@ -17,7 +17,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :species, label: "Species", input_html: { class: "form-control" } %>
+    <%= f.input :species, :collection => %w(Cat Dog Rabbit Bird Horse Snake Turtle Hedgehog), label: "Species", input_html: { class: "form-control" } %>
   </div>
 
   <div class="form-group">
