@@ -29,7 +29,18 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :photos, as: :file, label: "Add Photos (Optional)", input_html: { multiple: true } %>
+  <h3>Current Photos</h3>
+  <% if @animal.photos.attached? %>
+    <% @animal.photos.each do |photo| %>
+      <%= image_tag photo, class: "img-thumbnail", width: 150, height: 150 %>
+    <% end %>
+  <% else %>
+    <p>No photos uploaded yet.</p>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :photos, as: :file, label: "Upload Additional Photos", input_html: { multiple: true } %>
   </div>
 
   <div class="form-group">
