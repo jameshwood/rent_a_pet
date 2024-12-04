@@ -84,13 +84,21 @@ class AnimalsController < ApplicationController
   def update
     @animal = Animal.find(params[:id])
 
-    if @available_start && @available_end
+    if params[:animal][:photos].present?
+      params[:animal][:photos].each do |photo|
+        @animal.photos.attach(photo)
+      end
+    end
+
+    @animal.assign_attributes(animal_params.except(:photos))
+
+    if @animal.available_start.present? && @animal.available_end.present?
       @animal.availability = Date.today >= @animal.available_start && Date.today <= @animal.available_end
     else
       @animal.availability = false
     end
 
-    if @animal.update(animal_params)
+    if @animal.update(animal_params.except(:photos))
       redirect_to animal_path(@animal), notice: "Animal listing updated successfully."
     else
       flash.now[:alert] = "There was an error updating the animal listing."
