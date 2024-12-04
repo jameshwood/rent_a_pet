@@ -4,15 +4,13 @@ class Animal < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many :users, through: :bookings
   has_many_attached :photos
-  validates :name, :species, :age, :price, :photos, presence: true
+  validates :name, :species, :age, :price, :available_start, :available_end, presence: true
   validates :description, presence: true, length: { minimum: 12 }
-  validates :availability, inclusion: { in: [true, false] }
-
+  validates :photos, presence: true, on: :create
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  attr_accessor :available_start, :available_end
 
   def average_rating
     return 0 if reviews.empty?
