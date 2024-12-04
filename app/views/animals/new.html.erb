@@ -28,6 +28,10 @@
     <%= f.input :price, label: "Price (per day)", input_html: { class: "form-control", step: 0.01 } %>
   </div>
 
+  <div class="form-group">
+    <%= f.input :address, label: "address", input_html: { class: "form-control", step: 0.01 } %>
+  </div>
+
 
   <div class="form-group">
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
