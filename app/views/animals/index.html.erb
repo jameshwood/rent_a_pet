@@ -27,6 +27,8 @@
       <% else %>
         <!-- Placeholder Image for No Photos -->
         <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image d-block w-100" height="300" width="400" />
+        <%= link_to "More Details", animal_path(animal), class: "btn btn-primary mt-3" %>
+
       <% end %>
 
       <!-- Animal Info -->
