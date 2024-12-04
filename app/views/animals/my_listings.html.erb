@@ -21,7 +21,7 @@
         <p><%= animal.description %></p>
         <p><%= animal.price %>€</p>
         <em><%= animal.availability ? "Available" : "Not available" %></em>
-        <%= link_to "Delete listing", my_listings_path,
+        <%= link_to "Delete listing", animal_path(animal),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},
             class: "btn btn-danger" %>
       </div>

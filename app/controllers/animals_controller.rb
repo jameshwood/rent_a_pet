@@ -39,7 +39,6 @@ class AnimalsController < ApplicationController
   end
 
   def destroy
-    raise
     @animal.destroy
     redirect_to my_listings_path, status: :see_other
   end
