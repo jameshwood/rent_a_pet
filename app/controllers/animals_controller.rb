@@ -28,24 +28,17 @@ class AnimalsController < ApplicationController
   def create
     @animal = current_user.animals.new(animal_params)
 
-    @available_start = Date.parse(params[:animal][:available_start])
-    @available_end = Date.parse(params[:animal][:available_end])
-
-    if @available_start && @available_end
-      if Date.today >= @available_start && Date.today <= @available_end
-        @animal.availability = true
-      else
-        @animal.availability = false
-      end
+    if @animal.available_start.present? && @animal.available_end.present?
+      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
     else
       @animal.availability = false
     end
+
     if @animal.save
       @animal.photos.attach(params[:animal][:photos]) if params[:animal][:photos]
-      redirect_to animal_path(@animal)
+      redirect_to animal_path(@animal), notice: "Animal created successfully."
     else
-      @animal
-      flash.now[:alert] = "There was an error adding the animal."
+      flash.now[:alert] = "There was an error creating the animal."
       render :new, status: :unprocessable_entity
     end
   end
@@ -57,10 +50,6 @@ class AnimalsController < ApplicationController
   def update
     @animal = Animal.find(params[:id])
 
-    @available_start = params[:animal][:available_start].present? ? Date.parse(params[:animal][:available_start]) : nil
-    @available_end = params[:animal][:available_end].present? ? Date.parse(params[:animal][:available_end]) : nil
-
-    raise
     if @available_start && @available_end
       @animal.availability = Date.today >= @available_start && Date.today <= @available_end
     else
@@ -94,6 +83,6 @@ class AnimalsController < ApplicationController
   end
 
   def animal_params
-    params.require(:animal).permit(:name, :species, :age, :price, :availability, :address, :description, photos: [])
+    params.require(:animal).permit(:name, :species, :age, :price, :availability, :address, :description, :available_start, :available_end, photos: [])
   end
 end
