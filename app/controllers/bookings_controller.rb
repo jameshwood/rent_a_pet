@@ -29,6 +29,19 @@ class BookingsController < ApplicationController
     redirect_to bookings_path, status: :see_other
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params)
+      redirect_to booking_path(@booking), notice: "Booking updated!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_animal
