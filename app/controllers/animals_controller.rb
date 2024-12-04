@@ -29,7 +29,7 @@ class AnimalsController < ApplicationController
     @animal = current_user.animals.new(animal_params)
 
     if @animal.available_start.present? && @animal.available_end.present?
-      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
+      @animal.availability = Date.today >= @animal.available_start && Date.today <= @animal.available_end
     else
       @animal.availability = false
     end
@@ -50,8 +50,10 @@ class AnimalsController < ApplicationController
   def update
     @animal = Animal.find(params[:id])
 
-    if @available_start && @available_end
-      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
+    @animal.assign_attributes(animal_params)
+
+    if @animal.available_start.present? && @animal.available_end.present?
+      @animal.availability = Date.today >= @animal.available_start && Date.today <= @animal.available_end
     else
       @animal.availability = false
     end
