@@ -2,6 +2,8 @@
 <div class="animal-grid">
   <% @animals.each do |animal| %>
     <div class="animal-card mb-4">
+
+    <%# <%= link_to animal_path(animal), class: "animal-card mb-4 text-decoration-none", style: "display: block;" do %>
       <!-- Carousel -->
       <% if animal.photos.attached? %>
         <div id="carouselAnimal<%= animal.id %>" class="carousel slide" data-bs-ride="carousel">
@@ -34,8 +36,12 @@
         <p class="animal-rating">
           Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
         </p>
-
       </div>
     </div>
   <% end %>
+</div>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>

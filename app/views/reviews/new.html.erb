@@ -1,0 +1,14 @@
+<div class="container">
+
+<h1>What did you think of me? </h1>
+<h4>Leave your opinion so others would enjoy my company as well!</h4>
+
+<%= simple_form_for [@booking, @review], html: { class: "form" } do |f| %>
+  <%= f.input :content, label: "Your Review", as: :text, placeholder: "Write your review here..." %>
+  <%= f.input :rating, label: "Rating (1 to 10)", input_html: { min: 1, max: 10 } %>
+  <div class="form-actions">
+    <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+</div>
