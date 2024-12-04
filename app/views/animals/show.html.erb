@@ -1,25 +1,46 @@
-<h1 class="text-center mt-3">Welcome to my profile! </h1>
-<i class="fa-solid fa-paw-simple" style="color: #FFD43B;"></i>
+<div class="container mt-5">
+  <div class="row">
+    <!-- Animal Image Section -->
+    <div class="col-md-6 mb-4">
+      <% if @animal.photos.attached? %>
+        <div id="carouselAnimal<%= @animal.id %>" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% @animal.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index == 0 %>">
+                <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 500, width: 600, crop: :fill %>
+              </div>
+            <% end %>
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnimal<%= @animal.id %>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselAnimal<%= @animal.id %>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      <% else %>
+        <img src="/placeholder.jpg" alt="<%= @animal.name %>" class="d-block w-100 animal-image" />
+      <% end %>
+    </div>
 
-<div class="container">
-<div class="card" style="width: 18rem;">
-  <img src="@animal.photos" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= @animal.name %></h5>
-    <h6>I'm <%= @animal.age %> years old!</h6>
-    <p class="card-text"><%= @animal.description %></p>
+    <!-- Animal Details Section -->
+    <div class="col-md-6">
+      <h1 class="animal-name mb-3"><%= @animal.name %></h1>
+      <p class="animal-species"><strong>Species:</strong> <%= @animal.species %></p>
+      <p class="animal-description"><strong>Description:</strong> <%= @animal.description %></p>
+      <p class="animal-price"><strong>Price:</strong> <%= @animal.price %> $</p>
+      <p class="animal-availability"><strong>Available for rent:</strong> <%= @animal.availability ? "Yes" : "No" %></p>
+
+      <!-- Rating Section -->
+      <div class="animal-rating mb-3">
+        <strong>Rating:</strong>
+        <%= @animal.reviews.any? ? "#{@animal.average_rating} / 10 ⭐️ " : "No reviews yet" %>
+      </div>
+
+      <%= link_to "Book Now", new_animal_path(@animal), class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
-<div class="details mt-5">
-<h2>More details about me:</h2>
-<ul class="animal_details">
-<li><strong>Species: </strong><%= @animal.species %></li>
-<li><strong>Price: </strong><%= @animal.price %>$</li>
-<li><strong>Availability:</strong> <%= @animal.availability %></li>
-
-<%= link_to "Book me!",  new_animal_booking_path(@animal), class: "btn btn-primary" %>
-</ul>
-</div>
-</div>
-
- <%# <%= link_to "Rent me!", new_animal_booking_path %>
