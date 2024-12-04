@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authorize_user!, only: [:edit, :update]
 
   def index
     @animals = Animal.all
@@ -9,18 +10,9 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
   end
 
-  def index
-    @animals = Animal.all
-  end
-
   def new
     @animal = Animal.new()
   end
-
-  def index
-    @animals = Animal.all
-  end
-
 
   def create
     @animal = current_user.animals.new(animal_params)
@@ -41,7 +33,38 @@ class AnimalsController < ApplicationController
     end
   end
 
+  def edit
+    @animal = Animal.find(params[:id])
+  end
+
+  def update
+    @animal = Animal.find(params[:id])
+
+    @available_start = params[:animal][:available_start].present? ? Date.parse(params[:animal][:available_start]) : nil
+    @available_end = params[:animal][:available_end].present? ? Date.parse(params[:animal][:available_end]) : nil
+
+    if @available_start && @available_end
+      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
+    else
+      @animal.availability = false
+    end
+
+    if @animal.update(animal_params)
+      redirect_to animal_path(@animal), notice: "Animal listing updated successfully."
+    else
+      flash.now[:alert] = "There was an error updating the animal listing."
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def authorize_user!
+    @animal = Animal.find(params[:id])
+    unless @animal.user == current_user
+      redirect_to animals_path, alert: "You are not authorized to edit this listing."
+    end
+  end
 
   def animal_params
     params.require(:animal).permit(:name, :species, :age, :price, :availability, :description, photos: [])

@@ -4,8 +4,9 @@ class Animal < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many :users, through: :bookings
   has_many_attached :photos
-  validates :name, :species, :age, :price, :availability, :photos, presence: true
+  validates :name, :species, :age, :price, :availability, presence: true
   validates :description, presence: true, length: { minimum: 12 }
+  validates :photos, presence: true, on: :create
 
   attr_accessor :available_start, :available_end
 
