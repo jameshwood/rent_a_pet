@@ -1,0 +1,36 @@
+<div class="search-container d-flex">
+  <!-- Left Column: Animal Cards -->
+  <div class="left-column">
+    <h2>Search Results</h2>
+    <% if @animals.any? %>
+      <div class="animal-grid">
+        <% @animals.each do |animal| %>
+          <div class="animal-card mb-4">
+            <!-- Carousel or Single Photo -->
+            <% if animal.photos.attached? %>
+              <%= image_tag animal.photos.first, class: "animal-image", alt: animal.name %>
+            <% else %>
+              <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image" />
+            <% end %>
+
+            <!-- Animal Info -->
+            <div class="animal-details">
+              <h3><%= animal.name %></h3>
+              <p><%= animal.address %></p>
+              <p><strong>Species:</strong> <%= animal.species %></p>
+              <p><strong>Price:</strong> <%= animal.price.to_i %> $</p>
+              <%= link_to "View Details", animal_path(animal), class: "btn btn-primary mt-2" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No animals match your search criteria.</p>
+    <% end %>
+  </div>
+
+  <!-- Right Column: Map -->
+  <div class="right-column">
+    <div id="map" style="width: 100%; height: 100%;"></div>
+  </div>
+</div>

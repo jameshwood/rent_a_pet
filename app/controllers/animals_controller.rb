@@ -7,9 +7,30 @@ class AnimalsController < ApplicationController
     @markers = @animals.geocoded.map do |animal|
       {
         lat: animal.latitude,
-        lng: animal.longitude
+        lng: animal.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {animal: animal})
       }
     end
+  end
+
+  def search
+    # Extract search parameters
+    location = params[:search][:location]
+    from_date = Date.parse(params[:search][:from]) rescue nil
+    to_date = Date.parse(params[:search][:to]) rescue nil
+    animal_type = params[:search][:animal_type]
+
+    @animals = Animal.all
+
+    @animals = @animals.where("address ILIKE ?", "%#{location}%") if location.present?
+
+    if from_date && to_date
+      @animals = @animals.where("available_start <= ? AND available_end >= ?", from_date, to_date)
+    end
+
+    @animals = @animals.where("species ILIKE ?", "%#{animal_type}%") if animal_type.present?
+
+    render :search
   end
 
   def my_listings
