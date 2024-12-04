@@ -19,7 +19,7 @@
     </div>
     <div class="divider"></div>
     <div class="search-item">
-      <%= f.input :animal_type, as: :string, placeholder: "Dog", input_html: { id: "animal" } %>
+      <%= f.input :animal_type, as: :select, collection: ["Cat", "Dog", "Rabbit", "Bird", "Horse", "Snake", "Turtle", "Hedgehog"], prompt: "Select an animal" %>
     </div>
     <button type="submit" class="search-button">
       <span class="search-icon">🔍</span>

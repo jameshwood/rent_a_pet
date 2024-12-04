@@ -15,7 +15,6 @@ class AnimalsController < ApplicationController
   end
 
   def search
-    # Extract search parameters
     location = params[:search][:location]
     from_date = Date.parse(params[:search][:from]) rescue nil
     to_date = Date.parse(params[:search][:to]) rescue nil
@@ -23,16 +22,30 @@ class AnimalsController < ApplicationController
 
     @animals = Animal.all
 
-    @animals = @animals.where("address ILIKE ?", "%#{location}%") if location.present?
+    if location.present?
+      coordinates = Geocoder.search(location).first&.coordinates
+      if coordinates
+        @animals = @animals.near(coordinates, 10) # 10km radius
+      end
+    end
 
     if from_date && to_date
       @animals = @animals.where("available_start <= ? AND available_end >= ?", from_date, to_date)
     end
 
-    @animals = @animals.where("species ILIKE ?", "%#{animal_type}%") if animal_type.present?
+    @animals = @animals.where(species: animal_type) if animal_type.present?
 
+    @markers = @animals.geocoded.map do |animal|
+      {
+        lat: animal.latitude,
+        lng: animal.longitude,
+        info_window_html: render_to_string(partial: "animals/info_window", locals: { animal: animal })
+      }
+    end
+    raise
     render :search
   end
+
 
   def my_listings
     @animals = current_user.animals
@@ -50,7 +63,7 @@ class AnimalsController < ApplicationController
     @animal = current_user.animals.new(animal_params)
 
     if @animal.available_start.present? && @animal.available_end.present?
-      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
+      @animal.availability = Date.today >= @animal.available_start && Date.today <= @animal.available_end
     else
       @animal.availability = false
     end
@@ -72,7 +85,7 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
 
     if @available_start && @available_end
-      @animal.availability = Date.today >= @available_start && Date.today <= @available_end
+      @animal.availability = Date.today >= @animal.available_start && Date.today <= @animal.available_end
     else
       @animal.availability = false
     end
