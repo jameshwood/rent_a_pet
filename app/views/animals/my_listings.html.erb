@@ -1,0 +1,30 @@
+<h1 class="centered-title">Listings</h1>
+
+<div class="listing-container">
+  <div class="listing-cards">
+    <% @animals.each do |animal| %>
+      <div class="listing-card">
+        <h3><%= link_to "#{animal.name}", animal_path(animal) %></h3>
+        <% if animal.photos.attached? %>
+          <%= image_tag animal.photos.first, alt: animal.name %>
+        <% else %>
+        <!-- Placeholder Image for No Photos -->
+          <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image d-block w-100" height="300" width="400" />
+        <% end %>
+        <p>Species: <%= animal.species.capitalize %></p>
+        <% if animal.breed.present? %>
+          <p>Breed: <%= animal.breed %></p>
+        <% else %>
+          <p>Breed: Unknown</p>
+        <% end %>
+        <p>Age: <%= animal.age %></p>
+        <p><%= animal.description %></p>
+        <p><%= animal.price %>€</p>
+        <em><%= animal.availability ? "Available" : "Not available" %></em>
+        <%= link_to "Delete listing", my_listings_path,
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},
+            class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>

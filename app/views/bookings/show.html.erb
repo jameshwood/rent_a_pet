@@ -20,3 +20,7 @@
   <p>No review for this booking yet.</p>
   <%= link_to "Write one here", new_booking_review_path(@booking), class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to "Cancel booking", booking_path(@booking),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+    class: "btn btn-danger" %>
