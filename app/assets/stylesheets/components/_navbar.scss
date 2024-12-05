@@ -1,35 +1,41 @@
 /* Navbar Search Bar */
 #navbar {
-  justify-content: center;
+  display: flex;
+  flex-direction: column; /* Allows stacking on smaller screens */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   position: relative;
-  z-index: 20;
   background-color: transparent !important;
-  margin: 10px;
+  padding: 16px 24px; /* Add spacing */
+  box-sizing: border-box;
 }
 
 .container {
-  margin-right: 0px;
-  margin-left: 0px;
+  display: flex;
+  justify-content: space-between; /* Push logo to the left and profile to the right */
+  align-items: center;
   width: 100%;
-  margin-top: 20px;
-  position: relative;
 }
 
 .navbar-brand {
-  position: absolute;
-  top: -20px;
-  left: -85px;
+  flex: 1; /* Ensure logo takes up appropriate space */
+  display: flex;
+  align-items: center;
 }
 
 .dropdown {
-  position: absolute;
-  top: 50px;
-  left: 1300px;
+  flex: 1; /* Ensure profile dropdown takes space */
+  display: flex;
+  justify-content: flex-end;
 }
 
 .airbnb-search-bar {
+  flex: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 10px 0;
   background: #fff;
   border-radius: 50px;
   padding: 10px 20px;
