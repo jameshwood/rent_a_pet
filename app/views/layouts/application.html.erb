@@ -12,7 +12,23 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <%# dynamic class for banner %>
+    <%
+      if controller.controller_name == 'animals' && controller.action_name == 'index'
+        @banner_class = 'large-banner'
+      else
+        @banner_class = 'small-banner'
+      end
+    %>
+
+    <!-- Banner Section: Dynamic Logic for Banner -->
+    <div class="banner <%= @banner_class %>">
+      <!-- Navbar inside the banner -->
+      <div class="navbar-wrapper">
+        <%= render 'shared/navbar' %>
+      </div>
+    </div>
+
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
