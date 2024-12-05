@@ -1,5 +1,24 @@
 <h1>Edit Animal Listing</h1>
 
+
+<div class="form-group">
+  <h3>Current Photos</h3>
+  <% if @animal.photos.attached? %>
+    <% @animal.photos.each do |photo| %>
+      <div class="photo-wrapper">
+        <%= image_tag photo, class: "img-thumbnail", width: 150, height: 150 %>
+        <%= button_to "Delete Photo", delete_photo_animal_path(@animal, photo_id: photo.id),
+                      method: :delete,
+                      class: "btn btn-danger btn-sm",
+                      data: { confirm: "Are you sure you want to delete the photo?" } %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No photos uploaded yet.</p>
+  <% end %>
+</div>
+
+
 <%= simple_form_for @animal, html: { multipart: true } do |f| %>
   <% if @animal.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +30,10 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="form-group">
+    <%= f.input :photos, as: :file, label: "Upload Additional Photos", input_html: { multiple: true } %>
+  </div>
 
   <div class="form-group">
     <%= f.input :name, label: "Animal Name", input_html: { class: "form-control" } %>
@@ -29,18 +52,7 @@
   </div>
 
   <div class="form-group">
-  <h3>Current Photos</h3>
-  <% if @animal.photos.attached? %>
-    <% @animal.photos.each do |photo| %>
-      <%= image_tag photo, class: "img-thumbnail", width: 150, height: 150 %>
-    <% end %>
-  <% else %>
-    <p>No photos uploaded yet.</p>
-  <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :photos, as: :file, label: "Upload Additional Photos", input_html: { multiple: true } %>
+    <%= f.input :address, label: "address", input_html: { class: "form-control", step: 0.01 } %>
   </div>
 
   <div class="form-group">

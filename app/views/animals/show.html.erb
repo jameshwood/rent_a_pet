@@ -46,9 +46,10 @@
 
       <% if @animal.user == current_user %>
         <%= link_to "Edit Listing", edit_animal_path(@animal), class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Book me!",  new_animal_booking_path(@animal), class: "btn btn-primary" %>
       <% end %>
 
-      <%= link_to "Book me!",  new_animal_booking_path(@animal), class: "btn btn-primary" %>
       <%= link_to "Back", animals_path, class: "btn btn-warning" %>
       </ul>
     </div>
