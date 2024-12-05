@@ -14,6 +14,7 @@ class AnimalsController < ApplicationController
     end
   end
 
+
   def search
     location = params[:search][:location]
     from_date = Date.parse(params[:search][:from]) rescue nil
@@ -30,12 +31,30 @@ class AnimalsController < ApplicationController
     end
 
     if from_date && to_date
-      @animals = @animals.where("available_start <= ? AND available_end >= ?", from_date, to_date)
+      @animals = @animals.select do |animal|
+        # Ensure available_start and available_end are not nil
+        next false if animal.available_start.nil? || animal.available_end.nil?
+
+        # Check if the animal's available range covers the selected dates
+        available = animal.available_start <= from_date && animal.available_end >= to_date
+
+        # Check if there are no overlapping bookings
+        no_conflicting_bookings = animal.bookings.none? do |booking|
+          booking.start_date_time < to_date && booking.end_date_time > from_date
+        end
+
+        # Include the animal only if both conditions are met
+        available && no_conflicting_bookings
+      end
     end
 
     @animals = @animals.where(species: animal_type) if animal_type.present?
 
-    @markers = @animals.geocoded.map do |animal|
+
+
+
+
+    @markers = @animals.map do |animal|
       {
         lat: animal.latitude,
         lng: animal.longitude,
@@ -44,7 +63,6 @@ class AnimalsController < ApplicationController
     end
     render :search
   end
-
 
   def my_listings
     @animals = current_user.animals
@@ -57,6 +75,11 @@ class AnimalsController < ApplicationController
       lng: @animal.longitude,
       info_window_html: render_to_string(partial: "animals/info_window", locals: { animal: @animal })
     }
+    @booking = Booking.new()
+      @animal = Animal.find(params[:id])
+      @booked_dates = @animal.bookings.pluck(:start_date_time, :end_date_time).map do |range|
+        { from: range[0].to_date, to: range[1].to_date }
+      end
   end
 
   def new

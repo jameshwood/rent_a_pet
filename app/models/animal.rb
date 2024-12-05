@@ -16,4 +16,12 @@ class Animal < ApplicationRecord
     return 0 if reviews.empty?
     (reviews.average(:rating).to_f * 2).round / 2.0
   end
+
+  scope :available_for_dates, ->(from_date, to_date) {
+    left_outer_joins(:bookings)
+      .where(
+        "bookings.start_date_time NOT BETWEEN ? AND ? AND bookings.end_date_time NOT BETWEEN ? AND ? OR bookings.id IS NULL",
+        from_date, to_date, from_date, to_date
+      )
+  }
 end

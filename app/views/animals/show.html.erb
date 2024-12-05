@@ -48,7 +48,6 @@
         <%= link_to "Edit Listing", edit_animal_path(@animal), class: "btn btn-primary" %>
       <% end %>
 
-      <%= link_to "Book me!",  new_animal_booking_path(@animal), class: "btn btn-primary" %>
       <%= link_to "Back", animals_path, class: "btn btn-warning" %>
       </ul>
     </div>
@@ -69,6 +68,42 @@
     </div>
   </div>
   </div>
+
+
+
+  <div class="reservation-form"
+      data-controller="availability-datepicker"
+      data-availability-datepicker-booked-dates-value="<%= @booked_dates.to_json %>">
+    <%= simple_form_for [@animal, @booking] do |f| %>
+      <!-- Start Date -->
+      <div class="form-group">
+        <%= f.input :start_date_time,
+                    as: :string,
+                    label: "Start Date",
+                    input_html: { data: { availability_datepicker_target: "start" } } %>
+      </div>
+
+      <!-- End Date -->
+      <div class="form-group">
+        <%= f.input :end_date_time,
+                    as: :string,
+                    label: "End Date",
+                    input_html: { data: { availability_datepicker_target: "end" } } %>
+      </div>
+
+      <!-- Hidden Field for Animal ID -->
+      <%= f.hidden_field :animal_id, value: @animal.id %>
+
+      <!-- Book Button -->
+      <div class="form-group">
+         <%= f.submit "Book Now", class: "btn btn-primary w-100" %>
+      </div>
+      <% end %>
+    </div>
+
+
+
+
   </div>
    <div class="right-column">
     <div style="width: 100%; height: 600px;"
