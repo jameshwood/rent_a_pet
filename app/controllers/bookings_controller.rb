@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_animal, only: [:new, :create]
   before_action :set_booking, only: [:show, :destroy]
+  before_action :authorize_user, only: [:new, :create]
 
   def index
     @made_bookings = current_user.bookings.includes(:animal)
@@ -50,6 +51,13 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.includes(:animal).find(params[:id])
+  end
+
+  def authorize_user
+    @animal = Animal.find(params[:animal_id])
+    if @animal.user == current_user
+      redirect_to animal_path(@animal), alert: "You can't book your own listing!"
+    end
   end
 
   def booking_params
