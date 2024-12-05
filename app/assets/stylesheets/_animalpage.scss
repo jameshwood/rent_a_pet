@@ -1,0 +1,44 @@
+.shadow-box {
+  background-color: #FBF1EE;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.shadow-box:hover {
+  transform: translate(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.animal-details {
+  margin-bottom: 10px;
+  list-style-type: none;
+  background-color: #FBF1EE;
+  border-left: 4px solid #FBF1EE;
+}
+
+.review-card {
+  background-color: #FBF1EE;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  border-left: 4px solid #FBF1EE;
+}
+
+.reservation-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  border-left: 4px solid #FBF1EE;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.reservation-form:hover {
+  transform: translate(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
