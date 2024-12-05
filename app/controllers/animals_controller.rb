@@ -14,7 +14,8 @@ class AnimalsController < ApplicationController
       {
         lat: animal.latitude,
         lng: animal.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {animal: animal})
+        info_window_html: render_to_string(partial: "info_window", locals: {animal: animal}),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
