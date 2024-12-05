@@ -1,43 +1,38 @@
 
-<div class="animal-grid">
+<div class="animal-grid" data-controller="carousel">
   <% @animals.each do |animal| %>
-    <div class="animal-card mb-4" style="height: 330px">
-
-    <%# <%= link_to animal_path(animal), class: "animal-card mb-4 text-decoration-none", style: "display: block;" do %>
+    <a href="<%= animal_path(animal) %>" class="animal-card">
       <!-- Carousel -->
       <% if animal.photos.attached? %>
-        <div id="carouselAnimal<%= animal.id %>" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <% animal.photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= 'active' if index == 0 %>">
-                <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 300, width: 400, crop: :fill %>
-              </div>
-            <% end %>
-          </div>
-          <!-- Carousel Controls -->
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnimal<%= animal.id %>" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselAnimal<%= animal.id %>" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+       <div id="carouselAnimal<%= animal.id %>"
+        class="carousel slide"
+        data-carousel="<%= animal.photos.count > 1 ? 'true' : 'false' %>">
+        <div class="carousel-inner">
+          <% animal.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 300, width: 400, crop: :fill %>
+            </div>
+          <% end %>
         </div>
+      </div>
       <% else %>
         <!-- Placeholder Image for No Photos -->
-        <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image d-block w-100" height="300" width="400" />
+        <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image" />
       <% end %>
-      <%= link_to "More Details", animal_path(animal), class: "btn btn-primary mt-3" %>
 
-      <!-- Animal Info -->
-      <div class="animal-details">
-        <p class="animal-name"><%= animal.name %></p>
-        <p class="animal-price"><%= animal.price.to_i %>$</p>
-        <p class="animal-rating">
-          Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
-        </p>
+    <div class="animal-container">
+      <div class="animal-row">
+        <div class="animal-info">
+          <h3 class="animal-name"><%= animal.name %></h3>
+          <p class="animal-location">Location: <%= animal.address || "Unknown" %></p>
+          <p class="animal-price">Price/day: $<%= animal.price.to_i %></p>
+        </div>
+        <div class="animal-rating">
+          <span class="rating-star">⭐</span>
+          <span class="rating-value"><%= animal.reviews.any? ? "#{animal.average_rating}" : "N/A" %></span>
+        </div>
       </div>
     </div>
+    </a>
   <% end %>
 </div>

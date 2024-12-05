@@ -9,7 +9,20 @@
   max-width: 800px;
   width: 100%;
 }
+.form-label {
+  margin: 0;
+}
 
+.form-select {
+  --bs-form-select-bg-img: 0;
+}
+
+.form-control {
+  margin: 0;
+  border-bottom: 0;
+  padding: 0;
+  line-height: 0;
+}
 .search-item {
   display: flex;
   flex-direction: column;
