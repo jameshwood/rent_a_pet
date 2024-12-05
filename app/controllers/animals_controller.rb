@@ -4,7 +4,12 @@ class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :destroy]
 
   def index
-    @animals = Animal.all
+    if user_signed_in?
+      @animals = Animal.where.not(user: current_user)
+    else
+      @animals = Animal.all
+    end
+
     @markers = @animals.geocoded.map do |animal|
       {
         lat: animal.latitude,
@@ -96,7 +101,6 @@ class AnimalsController < ApplicationController
     end
 
     if @animal.save
-      @animal.photos.attach(params[:animal][:photos]) if params[:animal][:photos]
       redirect_to animal_path(@animal), notice: "Animal created successfully."
     else
       flash.now[:alert] = "There was an error creating the animal."
@@ -136,6 +140,13 @@ class AnimalsController < ApplicationController
   def destroy
     @animal.destroy
     redirect_to my_listings_path, status: :see_other
+  end
+
+  def destroy_photo
+    @animal = Animal.find(params[:id])
+    photo = @animal.photos.find(params[:photo_id])
+    photo.purge
+    redirect_to edit_animal_path(@animal), notice: "Photo deleted successfully."
   end
 
   private
