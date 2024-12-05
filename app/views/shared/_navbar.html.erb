@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+  <div class="container w-100">
     <!-- Navbar Brand -->
-    <a class="navbar-brand" href="<%= root_path %>">Rent A Pet</a>
+      <a class="navbar-brand" href="<%= root_path %>"><%= image_tag 'logo.png', alt: 'Rent A Pet', size: "150x150" %></a>
 
     <!-- Airbnb Style Search Bar in the Center -->
     <div class="search-bar-container mx-auto">
@@ -32,7 +32,7 @@
     <div class="dropdown">
       <% if user_signed_in? %>
         <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="<%= current_user.avatar || '/placeholder-avatar.jpg' %>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;">
+          <img src="<%= current_user.avatar || 'app/assets/images/avatar.png' %>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;">
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
           <li>
