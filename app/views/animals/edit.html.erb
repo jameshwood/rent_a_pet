@@ -1,22 +1,31 @@
-<h1>Edit Animal Listing</h1>
-
+<div class="header-row">
+  <h1>Edit Animal Listing</h1>
+  <%= link_to "Delete listing", animal_path(@animal),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},
+            class: "btn btn-danger" %>
+</div>
 
 <div class="form-group">
   <h3>Current Photos</h3>
   <% if @animal.photos.attached? %>
-    <% @animal.photos.each do |photo| %>
-      <div class="photo-wrapper">
-        <%= image_tag photo, class: "img-thumbnail", width: 150, height: 150 %>
-        <%= button_to "Delete Photo", delete_photo_animal_path(@animal, photo_id: photo.id),
-                      method: :delete,
-                      class: "btn btn-danger btn-sm",
-                      data: { confirm: "Are you sure you want to delete the photo?" } %>
-      </div>
-    <% end %>
+    <div class="photo-grid">
+      <% @animal.photos.each do |photo| %>
+        <div class="photo-wrapper">
+          <%= image_tag photo, class: "img-thumbnail" %>
+          <%= button_to "×",
+                        delete_photo_animal_path(@animal, photo_id: photo.id),
+                        method: :delete,
+                        class: "delete-button",
+                        data: { confirm: "Are you sure you want to delete the photo?" } %>
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <p>No photos uploaded yet.</p>
   <% end %>
 </div>
+
+
 
 
 <%= simple_form_for @animal, html: { multipart: true } do |f| %>
@@ -74,6 +83,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update Listing", class: "btn btn-primary" %>
+    <%= f.button :submit, "Update", class: "btn btn-primary" %>
   </div>
+
 <% end %>

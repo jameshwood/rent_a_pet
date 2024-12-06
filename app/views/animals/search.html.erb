@@ -1,30 +1,8 @@
 <div class="search-container d-flex">
   <!-- Left Column: Animal Cards -->
   <div class="left-column">
-    <h2>Search Results</h2>
     <% if @animals.any? %>
-      <div class="animal-grid">
-        <% @animals.each do |animal| %>
-          <div class="animal-card mb-4" style="height: 330px">
-            <!-- Carousel or Single Photo -->
-            <% if animal.photos.attached? %>
-              <%= image_tag animal.photos.first, class: "animal-image", alt: animal.name %>
-            <% else %>
-              <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image" />
-            <% end %>
-            <%= link_to "More Details", animal_path(animal), class: "btn btn-primary mt-3" %>
-
-            <!-- Animal Info -->
-            <div class="animal-details">
-              <p class="animal-name"><%= animal.name %></p>
-              <p class="animal-price"><%= animal.price.to_i %>$</p>
-              <p class="animal-rating">
-                    Rating: <%= animal.reviews.any? ? "#{animal.average_rating} / 10.0" : "No reviews yet" %>
-              </p>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <%= render 'shared/animal_grid' %>
     <% else %>
       <p>No animals match your search criteria.</p>
     <% end %>
@@ -33,10 +11,12 @@
 
  <!-- Right Column: Map -->
   <div class="right-column">
-    <div style="width: 100%; height: 600px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="sticky-container">
+      <div style="width: 100%; height: 100%;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
   </div>
 </div>
