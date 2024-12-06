@@ -1,0 +1,27 @@
+.btn-primary {
+  border-radius: 50%;
+  background-color: #57745e;
+  border: none;
+  height: 65px;
+  width: 100px;
+  font-size: 15px;
+  margin-top: 15px;
+
+  &:hover {
+    background-color: #3d4b40;
+  }
+}
+
+.btn-danger {
+  hover {
+    background-color: #db4b4d;
+  }
+}
+
+.btn {
+  color: white;
+
+  &:hover {
+    color: white;
+  }
+}

@@ -38,7 +38,7 @@
         position: absolute;
         top: 5px;
         right: 5px;
-        background-color: #ff4d4f;
+        background-color: #db4b4d;
         color: white;
         border: none;
         border-radius: 50%;
@@ -51,9 +51,13 @@
         padding: 0;
 
         &hover {
-          background-color: #e63946;
+          background-color: #db4b4d;
         }
       }
     }
   }
+}
+
+#update-button {
+  font-size: 20px;
 }
