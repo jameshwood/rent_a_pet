@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   # get 'users/:id/bookings', to: 'users#index'
   resources :bookings, only: [:index, :show, :edit, :update, :destroy] do
     resources :reviews, only: [:index, :new, :create]
+    member do
+      patch :cancel
+    end
   end
 end
