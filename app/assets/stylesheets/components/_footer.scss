@@ -1,0 +1,42 @@
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100px;
+  padding: 0px 50px;
+  color: rgb(73, 73, 73);
+  overflow: hidden;
+  margin-top: 0px;
+  padding-top: 0px;
+
+  .footer-center {
+    display: flex;
+    flex-direction: column;
+    margin-left: 500px;
+    align-items: center;
+    text-align: justify;
+
+    p {
+      margin: 0px;
+    }
+
+    i.fa-instagram {
+      color: #e1306c; /* Instagram brand color */
+    }
+  }
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('banner.png'); /* Update to your image path */
+  background-size: cover;
+  background-position: center 95%;
+  opacity: 0.5; /* Adjust opacity as needed */
+  z-index: -1; /* Ensures the image is behind the content */
+}
