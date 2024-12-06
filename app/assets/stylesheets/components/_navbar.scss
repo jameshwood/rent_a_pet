@@ -1,13 +1,13 @@
 /* Navbar Search Bar */
 #navbar {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   position: relative;
   background-color: transparent !important;
-  padding: 16px 24px;
+  padding: 8px 16px; /* Reduced padding */
   box-sizing: border-box;
 }
 
@@ -35,12 +35,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px 0;
+  margin: 8px 0; /* Reduced margin */
   background: #fff;
-  border-radius: 50px;
-  padding: 10px 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  border-radius: 50px; /* Slightly less rounded */
+  padding: 2px 12px; /* Slimmer padding */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Reduced shadow for a lighter look */
+  max-width: 700px; /* Adjusted max width */
   width: 100%;
 }
 
@@ -49,38 +49,38 @@
   --bs-form-select-bg-img: 0;
 }
 
-
 .search-item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 10px;
+  padding: 0 8px; /* Reduced padding between items */
 }
 
 .search-item label {
-  font-size: 12px;
+  font-size: 10px; /* Smaller label font size */
   font-weight: bold;
   color: #333;
+  margin-bottom: 3px; /* Slight spacing from input */
 }
 
 .search-item input,
 .search-item select {
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 12px; /* Smaller input font size */
   color: #555;
   background-color: transparent;
   width: 100%;
-  border-bottom: 2px solid #ddd;
-  padding: 5px 0;
-  margin-top: 5px;
+  border-bottom: 1px solid #ddd; /* Thinner bottom border */
+  padding: 3px 0; /* Slimmer padding */
+  margin-top: 3px;
 }
 
 .divider {
   width: 1px;
-  height: 40px;
+  height: 30px; /* Reduced height */
   background-color: #ddd;
-  margin: 0 10px;
+  margin: 0 8px; /* Reduced spacing around divider */
 }
 
 .search-button {
@@ -88,13 +88,13 @@
   color: white;
   border: none;
   border-radius: 50%;
-  padding: 10px;
+  padding: 8px; /* Slimmer button */
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .search-button .search-icon {
-  font-size: 16px;
+  font-size: 14px; /* Smaller icon size */
 }
 
 .search-button:hover {
@@ -108,12 +108,12 @@
 }
 
 .dropdown-menu {
-  min-width: 200px;
+  min-width: 180px; /* Reduced dropdown width */
 }
 
 .dropdown-item {
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 8px 16px; /* Slimmer dropdown padding */
+  font-size: 12px; /* Smaller font size */
 }
 
 .dropdown-item:hover {
