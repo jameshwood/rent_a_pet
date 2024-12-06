@@ -1,14 +1,70 @@
-.edit-container {
+// .edit-container {
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: flex-start;
+//   gap: 30px;
+//   padding: 20px;
+// }
+
+// .edit-form {
+//   background-color: white;
+//   padding: 35px;
+//   border-radius: 15px;
+//   box-shadow: 3px 3px 15px lightgray;
+// }
+
+.header-row {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  gap: 30px;
-  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
-.edit-form {
-  background-color: white;
-  padding: 35px;
-  border-radius: 15px;
-  box-shadow: 3px 3px 15px lightgray;
+.header-row h1 {
+  margin: 0;
+}
+
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: start;
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.img-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 18px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-button:hover {
+  background-color: #e63946;
 }

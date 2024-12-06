@@ -1,16 +1,30 @@
-.search-container {
-  display: flex;
-  gap: 20px; /* Space between columns */
+.left-column {
+  max-height: 100vh;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 20px;
 }
 
-.left-column {
-  flex: 1; /* Adjust to take remaining space */
-  overflow-y: auto; /* Allow scrolling if content exceeds height */
+.search-container {
+  display: flex;
+  padding-top: 20px;
+  padding-right: 20px;
+  height: 100%;
+  flex-wrap: nowrap;
+  gap: 20px;
 }
 
 .right-column {
   flex: 1;
-  max-width: 50%; /* Or another value to control map width */
+  max-width: 50%;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+}
+
+.sticky-container {
   position: sticky;
-  top: 0; /* Makes the map sticky when scrolling */
+  top: 20px;
+  height: 100vh;
+  overflow: hidden; 
 }

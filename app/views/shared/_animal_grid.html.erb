@@ -1,8 +1,6 @@
-<h1 class="centered-title">Listings</h1>
-
 <div class="animal-grid" data-controller="carousel">
   <% @animals.each do |animal| %>
-    <div class="animal-card">
+    <a href="<%= animal_path(animal) %>" class="animal-card">
       <!-- Carousel -->
       <% if animal.photos.attached? %>
        <div id="carouselAnimal<%= animal.id %>"
@@ -31,11 +29,9 @@
         <div class="animal-rating">
           <span class="rating-star">⭐</span>
           <span class="rating-value"><%= animal.reviews.any? ? "#{animal.average_rating}" : "N/A" %></span>
-           <%= link_to "Edit listing", edit_animal_path(animal),
-            class: "btn" %>
         </div>
       </div>
     </div>
-    </div>
+    </a>
   <% end %>
 </div>
