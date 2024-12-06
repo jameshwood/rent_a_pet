@@ -8,6 +8,19 @@
     font-size: 2rem;
     margin-bottom: 20px;
   }
+
+  #delete-booking-btn {
+    background-color: #909e94;
+
+    &:hover {
+      background-color: #db4b4d;
+    }
+  }
+
+  #add-review-btn {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 .bookings-container-detail {
