@@ -45,14 +45,19 @@
      <div class="row">
     <!-- Details Section -->
     <div class="col-lg-8">
-      <div class="animal-details shadow-box mb-4">
+      <div class="animal-card shadow-box mt-4">
         <h2>Hello there! I'm <%= @animal.name %></h2>
+        <div class="animal-details mb-2">
         <p><strong>Age:</strong> <%= @animal.age %></p>
-        <p><strong>Species:</strong> <%= @animal.species.capitalize %></p>
+        <p><strong>Species:</strong> <%= @animal.species %></p>
         <p><strong>Description:</strong> <%= @animal.description %></p>
         <p><strong>Price:</strong> €<%= @animal.price %> per day</p>
-        <h4>Hosted by <%= @animal.user.first_name %></h4>
+        <p><strong>Hosted by:</strong> <%= @animal.user.first_name %></p>
       </div>
+      </div>
+
+
+
 
       <div class="reviews shadow-box mt-4">
         <h4>What people thought about me!</h4>
@@ -83,7 +88,7 @@
           </div>
           <div class="form-group">
             <p class="price-summary">
-              Total Price: <span data-availability-datepicker-target="price">£0.00</span>
+              Total Price: <span data-availability-datepicker-target="price">€0.00</span>
             </p>
           </div>
           <%= f.hidden_field :animal_id, value: @animal.id %>
