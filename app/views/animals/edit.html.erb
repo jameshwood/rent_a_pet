@@ -2,7 +2,7 @@
   <h1>Edit Animal Listing</h1>
   <%= link_to "Delete listing", animal_path(@animal),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},
-            class: "btn btn-danger", id: "delete-listing" %>
+            class: "btn btn-danger" %>
 </div>
 
 <div class="form-group">
@@ -80,8 +80,8 @@
               data: { controller: "datepicker" } } %>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Update", class: "btn btn-primary", id: "update-button" %>
+    <div class="form-actions text-center">
+      <%= f.button :submit, "Update", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
