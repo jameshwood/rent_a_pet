@@ -1,31 +1,31 @@
 /* Navbar Search Bar */
 #navbar {
   display: flex;
-  flex-direction: column; /* Allows stacking on smaller screens */
+  flex-direction: column; 
   justify-content: space-between;
   align-items: center;
   width: 100%;
   position: relative;
   background-color: transparent !important;
-  padding: 16px 24px; /* Add spacing */
+  padding: 16px 24px;
   box-sizing: border-box;
 }
 
 .container {
   display: flex;
-  justify-content: space-between; /* Push logo to the left and profile to the right */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
 .navbar-brand {
-  flex: 1; /* Ensure logo takes up appropriate space */
+  flex: 1;
   display: flex;
   align-items: center;
 }
 
 .dropdown {
-  flex: 1; /* Ensure profile dropdown takes space */
+  flex: 1;
   display: flex;
   justify-content: flex-end;
 }
@@ -43,20 +43,13 @@
   max-width: 800px;
   width: 100%;
 }
-.form-label {
-  margin: 0;
-}
+
 
 .form-select {
   --bs-form-select-bg-img: 0;
 }
 
-.form-control {
-  margin: 0;
-  border-bottom: 0;
-  padding: 0;
-  line-height: 0;
-}
+
 .search-item {
   display: flex;
   flex-direction: column;

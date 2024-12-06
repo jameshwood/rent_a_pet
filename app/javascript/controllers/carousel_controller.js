@@ -9,7 +9,7 @@ export default class extends Controller {
       if (shouldInitialize) {
         // Initialize the carousel with Bootstrap
         const bootstrapCarousel = new bootstrap.Carousel(carousel, {
-          interval: 3000, // Adjust interval as needed
+          interval: 8000, // Adjust interval as needed
           ride: 'carousel',
         });
       } else {
@@ -20,5 +20,13 @@ export default class extends Controller {
       }
     });
   }
+  open(event) {
+    const popupCarousel = this.element.querySelector('.carousel'); // Find the carousel in the popup
+    if (popupCarousel) {
+      new bootstrap.Carousel(popupCarousel, {
+        interval: 8000,
+        ride: 'carousel',
+      });
+    }
+  }
 }
-

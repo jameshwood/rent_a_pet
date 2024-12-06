@@ -1,75 +1,77 @@
 <div class="container-fluid mt-5">
   <div class="row align-items-start">
-    <!-- Left Column: Animal Details and Reservation Form -->
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="animal-card">
-      <!-- Carousel -->
-      <% if @animal.photos.attached? %>
-       <div id="carouselAnimal<%= @animal.id %>"
-        class="carousel slide"
-        data-carousel="<%= @animal.photos.count > 1 ? 'true' : 'false' %>">
-        <div class="carousel-inner">
+    <!-- Top Section: Photos -->
+  <div class="row mb-4" data-controller="lightbox">
+    <div class="col-12" >
+      <div class="photo-gallery">
+        <div class="large-photo">
+          <%= cl_image_tag @animal.photos.first.key,
+            class: "main-photo-img",
+            width: 800,
+            height: 500,
+            crop: :fill,
+            alt: @animal.name,
+            "data-index": "0",
+            "data-lightbox-target": "photo",
+            "data-action": "click->lightbox#open" %>
+        </div>
+        <div class="small-photos">
           <% @animal.photos.each_with_index do |photo, index| %>
-            <div class="carousel-item <%= 'active' if index == 0 %>">
-              <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 300, width: 400, crop: :fill %>
+            <div class="secondary-photo">
+              <%= cl_image_tag photo.key,
+                width: 150,
+                height: 100,
+                class: "secondary-photo-img",
+                "data-lightbox-target": "photo",
+                "data-index": index,
+                "data-action": "click->lightbox#open" %>
             </div>
           <% end %>
         </div>
       </div>
-      <% else %>
-        <!-- Placeholder Image for No Photos -->
-        <img src="/placeholder.jpg" alt="<%= @animal.name %>" class="animal-image" />
-      <% end %>
-
-    <div class="animal-container">
-      <div class="animal-row">
-        <div class="animal-info">
-          <h3 class="animal-name"><%= @animal.name %></h3>
-          <p class="animal-location">Location: <%= @animal.address || "Unknown" %></p>
-          <p class="animal-price">Price/day: $<%= @animal.price.to_i %></p>
-        </div>
-        <div class="animal-rating">
-          <span class="rating-star">⭐</span>
-          <span class="rating-value"><%= @animal.reviews.any? ? "#{@animal.average_rating}" : "N/A" %></span>
-        </div>
+    </div>
+    <div id="lightbox" class="hidden" data-lightbox-target="lightbox" data-action="click->lightbox#closeOnBackgroundClick">
+      <div id="lightbox-content">
+        <button id="lightbox-prev" data-lightbox-target="prevButton" data-action="click->lightbox#prev">&lt;</button>
+        <img id="lightbox-image" data-lightbox-target="lightboxImage" src="" alt="">
+        <button id="lightbox-next" data-lightbox-target="nextButton" data-action="click->lightbox#next">&gt;</button>
       </div>
+      <button id="lightbox-close" data-lightbox-target="lightboxClose" data-action="click->lightbox#close">&times;</button>
     </div>
-    </div>
+  </div>
+  </div>
 
-     <div class="review-container shadow-box mt-4">
-      <h2>What people thought about me!</h2>
+
+     <div class="row">
+    <!-- Details Section -->
+    <div class="col-lg-8">
+      <div class="animal-details shadow-box mb-4">
+        <h2>Hello there! I'm <%= @animal.name %></h2>
+        <p><strong>Age:</strong> <%= @animal.age %></p>
+        <p><strong>Species:</strong> <%= @animal.species.capitalize %></p>
+        <p><strong>Description:</strong> <%= @animal.description %></p>
+        <h4>Hosted by <%= @animal.user.first_name %></h4>
+      </div>
+
+      <div class="reviews shadow-box mt-4">
+        <h4>What people thought about me!</h4>
         <% if @animal.reviews.present? %>
           <% @animal.reviews.each do |review| %>
-            <div class="review-card mb-4 pl-3" style="border-left: 4px solid #ccc; padding-left: 15px;">
+            <div class="review-card mb-2">
               <p><%= review.rating %> ⭐</p>
-              <p>
-                <span><%= review.booking.user.first_name %> - </span>
-                <span><em><%= review.content %></em></span>
-              </p>
+              <p><em>"<%= review.content %>"</em></p>
             </div>
           <% end %>
         <% else %>
-          <em>No reviews yet</em>
+          <p>No reviews yet!</p>
         <% end %>
       </div>
     </div>
       <!-- Animal Details -->
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="details mt-4 shadow-box">
-        <h2>Hello there! I'm <%= @animal.name %></h2>
-        <ul class="animal-details">
-        <li><strong>Age:</strong> <%= @animal.age %></li>
-          <li><strong>Species:</strong> <%= @animal.species.capitalize %></li>
-          <li><strong>Price:</strong> <%= @animal.price %>0$</li>
-          <li><strong>Owner:</strong> <%= @animal.user.first_name %> <%= @animal.user.last_name %></li>
-          <li><strong>Description:</strong> <%= @animal.description %></li>
-        </ul>
-        <% if @animal.user == current_user %>
-          <%= link_to "Edit Listing", edit_animal_path(@animal), class: "btn btn-primary" %>
-        <% end %>
-      </div>
+
 
       <!-- Reservation Form -->
+    <div class="col-lg-4">
       <div class="reservation-form t-5" data-controller="availability-datepicker" data-availability-datepicker-booked-dates-value="<%= @booked_dates.to_json %>">
         <%= simple_form_for [@animal, @booking] do |f| %>
           <div class="form-group">
@@ -85,9 +87,10 @@
         <% end %>
       </div>
     </div>
-
+  </div>
     <!-- Right Column: Map -->
-    <div class="col-lg-6 col-md-12 mt-5">
+    <div class="row">
+    <div class="col-12">
       <div class="sticky-map" style="position: sticky; top: 20px; height: 600px;">
         <div
           style="width: 100%; height: 100%;"
