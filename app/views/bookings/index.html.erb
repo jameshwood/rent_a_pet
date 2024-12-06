@@ -44,10 +44,11 @@
             <option value="Double booking">Double booking</option>
             <option value="Other">Other</option>
           </select>
-
+          <div class="button-container-index">
           <%= link_to "Cancel", booking_path(booking),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
             class: "btn btn-danger booking-cancel-button" %>
+          </div>
         </div>
       <% end %>
     <% end %>

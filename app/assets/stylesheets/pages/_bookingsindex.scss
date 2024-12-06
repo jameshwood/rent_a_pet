@@ -219,9 +219,10 @@
   border: none;
   padding: 8px 15px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  align-content: center;
 }
 
 .booking-cancel-button:hover {
@@ -239,4 +240,11 @@
   justify-content: space-between;
   flex-wrap: wrap; /* Ensure items wrap on smaller screens */
   gap: 20px; /* Space between the cards */
+}
+
+.button-container-index{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
 }
