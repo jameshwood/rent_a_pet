@@ -50,6 +50,7 @@
         <p><strong>Age:</strong> <%= @animal.age %></p>
         <p><strong>Species:</strong> <%= @animal.species.capitalize %></p>
         <p><strong>Description:</strong> <%= @animal.description %></p>
+        <p><strong>Price:</strong> €<%= @animal.price %>0</p>
         <h4>Hosted by <%= @animal.user.first_name %></h4>
       </div>
 
@@ -82,7 +83,7 @@
           </div>
           <div class="form-group">
             <p class="price-summary">
-              Total Price: <span data-availability-datepicker-target="price">£0.00</span>
+              Total Price: <span data-availability-datepicker-target="price">€0.00</span>
             </p>
           </div>
           <%= f.hidden_field :animal_id, value: @animal.id %>
