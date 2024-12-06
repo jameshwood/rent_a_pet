@@ -24,6 +24,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @animal = @booking.animal
   end
 
   def destroy
