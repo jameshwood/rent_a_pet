@@ -1,6 +1,6 @@
 .animal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
   justify-content: center;
   padding: 24px;
@@ -55,7 +55,7 @@
 .animal-location,
 .animal-price {
   font-size: 15px; /* Smaller font for secondary text */
-  color: #d9c3b0; /* Replace with your secondary color */
+  color: #555555; /* Replace with your secondary color */
   margin: 4px 0; /* Spacing between lines */
       }
 
