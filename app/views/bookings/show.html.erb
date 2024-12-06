@@ -1,30 +1,50 @@
-<div class="container">
-<h1>Booking Details</h1>
+<div class="container-bookings">
+  <!-- Page Title -->
+  <h1 class="page-title">Booking Details</h1>
 
-<img src="<%= @booking.animal.photos %>" alt="<%= @booking.animal.name %>"/>
-<p><strong>Name:</strong> <%= @booking.animal.name %></p>
-<p><strong>Species:</strong> <%= @booking.animal.species %></p>
-<p><strong>Start Time:</strong> <%= @booking.start_date_time.strftime("%B %d, %Y %H:%M") %></p>
-<p><strong>End Time:</strong> <%= @booking.end_date_time.strftime("%B %d, %Y %H:%M") %></p>
+  <!-- Grid Layout -->
+  <div class="bookings-container-detail">
+    <!-- Image Section -->
+    <div class="large-photo-booking">
+      <%= cl_image_tag @animal.photos.first.key,
+        class: "main-photo-img",
+        width: 800,
+        height: 500,
+        crop: :fill,
+        alt: @animal.name,
+        "data-index": "0",
+        "data-lightbox-target": "photo",
+        "data-action": "click->lightbox#open" %>
+    </div>
 
-<%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+    <!-- Booking Details Section -->
+    <div class="booking-details">
+      <p><strong>Name:</strong> <%= @booking.animal.name %></p>
+      <p><strong>Species:</strong> <%= @booking.animal.species %></p>
+      <p><strong>Start Time:</strong> <%= @booking.start_date_time.strftime("%B %d, %Y %H:%M") %></p>
+      <p><strong>End Time:</strong> <%= @booking.end_date_time.strftime("%B %d, %Y %H:%M") %></p>
+      <%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+    </div>
+  </div>
 
-<% if @booking.reviews.any? %>
-  <h2>Review:</h2>
-  <ul>
-    <% @booking.reviews.each do |review| %>
-      <li>
-        <p><strong>Rating:</strong> <%= review.rating %>/10 ⭐</p>
-        <p><strong>Content:</strong> <%= review.content %></p>
-      </li>
+  <!-- Reviews Section -->
+  <div class="reviews shadow-box mt-4">
+    <% if @booking.reviews.any? %>
+      <h2>Reviews:</h2>
+      <ul>
+        <% @booking.reviews.each do |review| %>
+          <li>
+            <p><strong>Rating:</strong> <%= review.rating %>/10 ⭐</p>
+            <p><strong>Content:</strong> <%= review.content %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No reviews for this booking yet.</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>No review for this booking yet.</p>
-<% end %>
-
-<%= link_to "Cancel booking", booking_path(@booking),
-    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-    class: "btn btn-danger" %>
-<button type="button" class="btn btn-success"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
+    <%= link_to "Cancel booking", booking_path(@booking),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+        class: "btn btn-danger" %>
+    <button type="button" class="btn btn-success"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
+  </div>
 </div>

@@ -17,6 +17,7 @@ body {
 @import "pages/bookingsindex";
 @import "components/search";
 @import "components/reservation";
+@import "pages/bookingpage";
 
 
 
@@ -24,4 +25,3 @@ body {
 @import url("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css");
 @import "/components/search";
 @import "/components/reservation";
-
