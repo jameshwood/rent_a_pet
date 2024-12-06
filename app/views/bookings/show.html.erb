@@ -44,7 +44,7 @@
     <% end %>
     <%= link_to "Cancel booking", booking_path(@booking),
         data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-        class: "btn btn-danger" %>
-    <button type="button" class="btn btn-success"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
+        class: "btn btn-danger", id: "delete-booking-btn" %>
+    <button type="button" class="btn btn-success" id="add-review-btn"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
   </div>
 </div>
