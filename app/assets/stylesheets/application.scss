@@ -17,11 +17,14 @@ body {
 @import "pages/bookingsindex";
 @import "components/search";
 @import "components/reservation";
+@import "pages/bookingpage";
 
 
 
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 @import url("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css");
+@import "/components/search";
+@import "/components/reservation";
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Walter Turncoat", cursive;
