@@ -3,6 +3,7 @@
   flex-direction: column;
   margin-top: 10px;
   margin-bottom: 45px;
+  align-items: center;
 
   h1 {
     text-align: center;
@@ -12,4 +13,9 @@
   #create-button {
     font-size: 25px;
   }
+}
+
+.form-bottom {
+  display: flex;
+  justify-content: center;
 }
