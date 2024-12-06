@@ -1,31 +1,56 @@
 <h1 class="centered-title mt-4">Bookings</h1>
 
 <div class="bookings-container">
+  <h1 class="centered-title">Bookings</h1>
   <h2><%= current_user.first_name %>'s Bookings</h2>
-  <div class="booking-cards">
-    <% @made_bookings.each do |booking| %>
-      <div class="booking-card">
-        <h3><%= link_to "Booking Nr.#{booking.id}", booking_path(booking), class: "booking-link" %></h3>
-        <p>Animal: <%= booking.animal.name %>, <%= booking.animal.species %></p>
-        <p>Start: <%= booking.start_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
-        <p>End: <%= booking.end_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
-      </div>
-    <% end %>
-  </div>
+    <div class="booking-grid">
+      <% @made_bookings.each do |booking| %>
+      <a href="<%= booking_path(booking) %>" class="booking-card">
+        <%= cl_image_tag booking.animal.photos.first.key, class: "d-block w-100 animal-image", height: 300, width: 300, crop: :fill %>
+        <div class="booking-container">
+          <div class="booking-row">
+            <div class="booking-info">
+              <h3 class='booking-id'> Booking N.<%=booking.id%></h3>
+              <h3 class="booking-name"><%= booking.animal.name %></h3>
+              <p class="booking-info-data"> <%= booking.animal.species %></p>
+              <p class="booking-info-data"> <%= booking.animal.price %></p>
+              <p class="booking-info-data"> <%= booking.start_date_time.strftime("%d/%m/%Y") %></p>
+              <p class="booking-info-data"><%= booking.end_date_time.strftime("%d/%m/%Y") %></p>
+            </div>
+          </div>
+        </div>
+        </a>
+      <% end %>
+    </div>
 </div>
 
 <div class="bookings-container">
-  <h2>Animals booked</h2>
-  <div class="booking-cards">
+  <h2>Animals Booked</h2>
+  <div class="booking-grid">
     <% current_user.animals.each do |animal| %>
       <% animal.bookings.each do |booking| %>
-        <div class="booking-card">
-          <h3><%= animal.name %></h3>
-          <p>Start: <%= booking.start_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
-          <p>End: <%= booking.end_date_time.strftime("%d/%m/%Y, %H:%M") %></p>
-          <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+        <div class="booking-card" id="booking-card-<%= booking.id %>" data-cancel-booking-target="card" data-booking-id="<%= booking.id %>">
+          <%= cl_image_tag booking.animal.photos.first.key, alt: booking.animal.name, class: "d-block w-100 animal-image", height: 200, width: 280, crop: :fill %>
+
+          <div class="booking-details">
+            <h3 class="animal-name"><%= booking.animal.name %></h3>
+            <p class="animal-name-info"><%= booking.animal.species %></p>
+            <p class="booking-info-data">Start: <%= booking.start_date_time.strftime("%d/%m/%Y") %> - End: <%= booking.end_date_time.strftime("%d/%m/%Y") %></p>
+            <p class="booked-by">Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+          </div>
+
+          <select class="form-select cancel-reason">
+            <option value="" disabled selected>Select cancellation reason</option>
+            <option value="Animal unavailable">Animal unavailable</option>
+            <option value="Owner emergency">Owner emergency</option>
+            <option value="Double booking">Double booking</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <%= link_to "Cancel", booking_path(booking),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: "btn btn-danger booking-cancel-button" %>
         </div>
-        <%# <%= link_to "View my reviews!", booking_reviews_path %>
       <% end %>
     <% end %>
   </div>

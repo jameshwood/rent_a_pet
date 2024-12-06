@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new()
   end
 
+
   def create
     @booking = current_user.bookings.new(booking_params)
     if @booking.save
@@ -27,6 +28,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
+    flash[:notice] = "Booking was successfully cancelled."
     redirect_to bookings_path, status: :see_other
   end
 
