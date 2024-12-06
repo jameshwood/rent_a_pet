@@ -2,7 +2,6 @@
   <!-- Page Title -->
   <h1 class="page-title">Booking Details</h1>
 
-  <!-- Grid Layout -->
   <div class="bookings-container-detail">
     <!-- Image Section -->
     <div class="large-photo-booking">
@@ -23,7 +22,12 @@
       <p><strong>Species:</strong> <%= @booking.animal.species %></p>
       <p><strong>Start Time:</strong> <%= @booking.start_date_time.strftime("%B %d, %Y %H:%M") %></p>
       <p><strong>End Time:</strong> <%= @booking.end_date_time.strftime("%B %d, %Y %H:%M") %></p>
+      <div class="button-container">
       <%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+      <%= link_to "Cancel booking", booking_path(@booking),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+        class: "btn btn-danger booking-cancel-button"%>
+      </div>
     </div>
   </div>
 
@@ -42,9 +46,6 @@
     <% else %>
       <p>No reviews for this booking yet.</p>
     <% end %>
-    <%= link_to "Cancel booking", booking_path(@booking),
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-        class: "btn btn-danger", id: "delete-booking-btn" %>
-    <button type="button" class="btn btn-success" id="add-review-btn"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
+    <%= link_to "Add a review", new_booking_review_path(@booking), class: "btn btn-primary"%>
   </div>
 </div>
