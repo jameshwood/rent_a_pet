@@ -36,6 +36,8 @@ class AnimalsController < ApplicationController
       end
     end
 
+    @animals = @animals.where(species: animal_type) if animal_type.present?
+    
     if from_date && to_date
       @animals = @animals.select do |animal|
         # Ensure available_start and available_end are not nil
@@ -54,7 +56,7 @@ class AnimalsController < ApplicationController
       end
     end
 
-    @animals = @animals.where(species: animal_type) if animal_type.present?
+
 
 
 
