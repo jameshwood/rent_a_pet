@@ -48,7 +48,7 @@ predefined_animals = [
 
   { name: "Thumper", species: "Rabbit", age: 1, description: "Fluffy and active rabbit, enjoys carrots and exploring the garden daily.", price: 50, address: "Coslada, Madrid", available_start: "2024-12-01", available_end: "2025-02-15" },
   { name: "Coco", species: "Rabbit", age: 2, description: "Calm, enjoys hopping, chewing toys, and sitting quietly beside owners often.", price: 60, address: "Avenue des Champs-Élysées, Paris", available_start: "2024-12-10", available_end: "2025-02-25" },
-  { name: "Snowball", species: "Rabbit", age: 3, description: "Friendly rabbit, loves attention, enjoys nibbling hay and occasional treats.", price: 55, address: "Kreuzberg, Berlin", available_start: "2024-12-15", available_end: "2025-02-10" },
+  { name: "Snowball", species: "Rabbit", age: 3, description: "Friendly rabbit, loves attention, enjoys nibbling hay and occasional treats.", price: 55, address: "Brandenburger Tor, Berlin", available_start: "2024-12-15", available_end: "2025-02-10" },
 
   { name: "Tweety", species: "Bird", age: 2, description: "A cheerful bird who sings daily, loves flying and perching indoors.", price: 40, address: "Marais, Paris", available_start: "2024-12-05", available_end: "2025-02-28" },
   { name: "Rio", species: "Bird", age: 1, description: "Colorful parrot who mimics sounds and enjoys chirping throughout sunny days.", price: 50, address: "Calle de Alcalá, Madrid", available_start: "2024-12-15", available_end: "2025-02-15" },
@@ -58,10 +58,10 @@ predefined_animals = [
   { name: "Shadow", species: "Horse", age: 12, description: "Gentle riding horse, loves being groomed and running across open fields.", price: 550, address: "Unter den Linden, Berlin", available_start: "2024-12-15", available_end: "2025-02-25" },
   { name: "Blaze", species: "Horse", age: 10, description: "Fast, energetic horse, enjoys jumping obstacles and grazing on fresh grass.", price: 600, address: "Rue de Rivoli, Paris", available_start: "2024-12-10", available_end: "2025-02-28" },
 
-  { name: "Slither", species: "Snake", age: 3, description: "Calm, beginner-friendly snake, loves basking under heat lamps and hiding.", price: 200, address: "Avenue des Champs-Élysées, Paris", available_start: "2024-12-01", available_end: "2025-02-15" },
+  { name: "Slither", species: "Snake", age: 3, description: "Calm, beginner-friendly snake, loves basking under heat lamps and hiding.", price: 200, address: "Rue d'Aboukir, Paris", available_start: "2024-12-01", available_end: "2025-02-15" },
   { name: "Venom", species: "Snake", age: 5, description: "Exotic snake, requires care and enjoys curling under rocks in tanks.", price: 250, address: "Calle Serrano, Madrid", available_start: "2024-12-05", available_end: "2025-02-20" },
 
-  { name: "Shelly", species: "Turtle", age: 15, description: "Slow turtle, enjoys relaxing in water and eating lettuce, small fruits.", price: 70, address: "Oxford Street, London", available_start: "2024-12-10", available_end: "2025-02-25" },
+  { name: "Shelly", species: "Turtle", age: 15, description: "Slow turtle, enjoys relaxing in water and eating lettuce, small fruits.", price: 70, address: "Buckingham Palace, London", available_start: "2024-12-10", available_end: "2025-02-25" },
   { name: "Crush", species: "Turtle", age: 20, description: "Friendly turtle, great with kids, loves basking and eating leafy vegetables.", price: 80, address: "Kurfürstendamm, Berlin", available_start: "2024-12-15", available_end: "2025-02-28" },
   { name: "Sonic", species: "Hedgehog", age: 2, description: "Adorable hedgehog, loves exploring, rolling into balls, and playing quietly.", price: 90, address: "Gran Vía, Madrid", available_start: "2024-12-01", available_end: "2025-02-15" }
 ]
