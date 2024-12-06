@@ -2,7 +2,7 @@
   <h1>Edit Animal Listing</h1>
   <%= link_to "Delete listing", animal_path(@animal),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},
-            class: "btn btn-danger" %>
+            class: "btn btn-danger", id: "delete-listing" %>
 </div>
 
 <div class="form-group">
