@@ -1,13 +1,18 @@
 .form {
   background-color: white;
-  padding: 35px;
+  padding-left: 25px;
+  padding-right: 45px;
+  padding-top: 35px;
+  padding-bottom: 20px;
   border-radius: 15px;
   box-shadow: 3px 3px 15px lightgray;
   margin-left: 400px;
   margin-right: 400px;
   margin-top: 20px;
-  width: 100%;
-  max-width: 600px;
+
+  .form-actions {
+    margin-left: 25px;
+  }
 }
 
 .btn {

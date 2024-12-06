@@ -1,0 +1,30 @@
+.left-column {
+  max-height: 100vh;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 20px;
+}
+
+.search-container {
+  display: flex;
+  padding-top: 20px;
+  padding-right: 20px;
+  height: 100%;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.right-column {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+}
+
+.sticky-container {
+  position: sticky;
+  top: 20px;
+  height: 100vh;
+  overflow: hidden; 
+}

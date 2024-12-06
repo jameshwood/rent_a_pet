@@ -1,25 +1,110 @@
-<h1 class="text-center mt-3">Welcome to my profile! </h1>
-<i class="fa-solid fa-paw-simple" style="color: #FFD43B;"></i>
+<div class="container-fluid mt-5">
+  <div class="row align-items-start">
+    <!-- Top Section: Photos -->
+  <div class="row mb-4" data-controller="lightbox">
+    <div class="col-12" >
+      <div class="photo-gallery">
+        <div class="large-photo">
+          <%= cl_image_tag @animal.photos.first.key,
+            class: "main-photo-img",
+            width: 800,
+            height: 500,
+            crop: :fill,
+            alt: @animal.name,
+            "data-index": "0",
+            "data-lightbox-target": "photo",
+            "data-action": "click->lightbox#open" %>
+        </div>
+        <div class="small-photos">
+          <% @animal.photos.each_with_index do |photo, index| %>
+            <div class="secondary-photo">
+              <%= cl_image_tag photo.key,
+                width: 150,
+                height: 100,
+                class: "secondary-photo-img",
+                "data-lightbox-target": "photo",
+                "data-index": index,
+                "data-action": "click->lightbox#open" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="lightbox" class="hidden" data-lightbox-target="lightbox" data-action="click->lightbox#closeOnBackgroundClick">
+      <div id="lightbox-content">
+        <button id="lightbox-prev" data-lightbox-target="prevButton" data-action="click->lightbox#prev">&lt;</button>
+        <img id="lightbox-image" data-lightbox-target="lightboxImage" src="" alt="">
+        <button id="lightbox-next" data-lightbox-target="nextButton" data-action="click->lightbox#next">&gt;</button>
+      </div>
+      <button id="lightbox-close" data-lightbox-target="lightboxClose" data-action="click->lightbox#close">&times;</button>
+    </div>
+  </div>
+  </div>
 
-<div class="container">
-<div class="card" style="width: 18rem;">
-  <img src="@animal.photos" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= @animal.name %></h5>
-    <h6>I'm <%= @animal.age %> years old!</h6>
-    <p class="card-text"><%= @animal.description %></p>
+
+     <div class="row">
+
+    <div class="animal-card shadow-box mt-4">
+  <h2>Hello there! I'm <%= @animal.name %></h2>
+  <div class="animal-details mb-2">
+  <p><strong>Age:</strong> <%= @animal.age %></p>
+  <p><strong>Species:</strong> <%= @animal.species %></p>
+  <p><strong>Description:</strong> <%= @animal.description %></p>
+  <p><strong>Hosted by:</strong> <%= @animal.user.first_name %></p>
+</div>
+</div>
+
+      <div class="reviews shadow-box mt-4">
+        <h4>What people thought about me!</h4>
+        <% if @animal.reviews.present? %>
+          <% @animal.reviews.each do |review| %>
+            <div class="review-card mb-2">
+              <p><%= review.rating %> ⭐</p>
+              <p><em>"<%= review.content %>"</em></p>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No reviews yet!</p>
+        <% end %>
+      </div>
+    </div>
+      <!-- Animal Details -->
+
+
+      <!-- Reservation Form -->
+    <div class="col-lg-4">
+      <div class="reservation-form t-5" data-controller="availability-datepicker" data-availability-datepicker-booked-dates-value="<%= @booked_dates.to_json %>" data-availability-datepicker-price-per-day-value="<%= @animal.price %>">
+        <%= simple_form_for [@animal, @booking] do |f| %>
+          <div class="form-group">
+            <%= f.input :start_date_time, as: :string, label: "Start Date", input_html: { data: { availability_datepicker_target: "start" } } %>
+          </div>
+          <div class="form-group">
+            <%= f.input :end_date_time, as: :string, label: "End Date", input_html: { data: { availability_datepicker_target: "end" } } %>
+          </div>
+          <div class="form-group">
+            <p class="price-summary">
+              Total Price: <span data-availability-datepicker-target="price">£0.00</span>
+            </p>
+          </div>
+          <%= f.hidden_field :animal_id, value: @animal.id %>
+          <div class="form-group">
+            <%= f.submit "Book Now", class: "btn btn-primary w-100" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+    <!-- Right Column: Map -->
+    <div class="row">
+    <div class="col-12">
+      <div class="sticky-map" style="position: sticky; top: 20px; height: 600px;">
+        <div
+          style="width: 100%; height: 100%;"
+          data-controller="map"
+          data-map-markers-value="<%= [@marker].to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="details mt-5">
-<h2>More details about me:</h2>
-<ul class="animal_details">
-<li><strong>Species: </strong><%= @animal.species %></li>
-<li><strong>Price: </strong><%= @animal.price %>$</li>
-<li><strong>Availability:</strong> <%= @animal.availability %></li>
-
-<%= link_to "Book me!",  new_animal_booking_path(@animal), class: "btn btn-primary" %>
-</ul>
-</div>
-</div>
-
- <%# <%= link_to "Rent me!", new_animal_booking_path %>

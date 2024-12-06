@@ -1,41 +1,59 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
   <div class="container">
-    <!-- Navbar Brand (Home Link) -->
-    <a class="navbar-brand" href="<%= root_path %>">Rent A Pet</a>
+    <!-- Navbar Brand -->
+      <a class="navbar-brand" href="<%= root_path %>"><%= image_tag 'logo.png', alt: 'Rent A Pet', size: "150x150" %></a>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Left-aligned Links -->
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= new_animal_path %>">New Listing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= bookings_path %>">My bookings</a>
-          </li>
-        <% end %>
-      </ul>
+    <!-- Airbnb Style Search Bar in the Center -->
+    <div class="search-bar-container mx-auto">
+  <%= simple_form_for :search, url: search_path, method: :get, html: { class: 'airbnb-search-bar d-flex align-items-center' } do |f| %>
+    <div class="search-item">
+      <%= f.input :location, as: :string, input_html: { id: "geocoder", placeholder: "Search destinations", data: { controller: "mapbox-geocoder" } } %>
+    </div>
+    <div class="divider"></div>
+    <div class="search-item">
+      <%= f.input :from, as: :string, input_html: { data: { controller: "datepicker" }, id: "checkin", placeholder: "Add dates" } %>
+    </div>
+    <div class="divider"></div>
+    <div class="search-item">
+      <%= f.input :to, as: :string, input_html: { data: { controller: "datepicker" }, id: "checkout", placeholder: "Add dates" } %>
+    </div>
+    <div class="divider"></div>
+    <div class="search-item">
+      <%= f.input :animal_type, as: :select, collection: ["Cat", "Dog", "Rabbit", "Bird", "Horse", "Snake", "Turtle", "Hedgehog"], prompt: "Select an animal" %>
+    </div>
+    <button type="submit" class="search-button">
+      <span class="search-icon">🔍</span>
+    </button>
+  <% end %>
+</div>
 
-      <!-- Right-aligned Links -->
-      <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <span class="navbar-text">
-              Welcome, <%= current_user.email %>!
-            </span>
+
+    <!-- Profile Dropdown -->
+    <div class="dropdown">
+      <% if user_signed_in? %>
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="<%= current_user.avatar || 'app/assets/images/avatar.png' %>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li>
+            <a class="dropdown-item" href="<%= new_animal_path %>">New Listing</a>
           </li>
-          <li class="nav-item">
-            <%= link_to "Sign out", destroy_user_session_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <li>
+            <a class="dropdown-item" href="<%= my_listings_path %>">My Listings</a>
           </li>
-        <% else %>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= new_user_session_path %>">Login</a>
+          <li>
+            <a class="dropdown-item" href="<%= bookings_path %>">My Bookings</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= new_user_registration_path %>">Sign Up</a>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item" %>
           </li>
-        <% end %>
-      </ul>
+        </ul>
+      <% else %>
+        <!-- Login/Sign Up Links for Guests -->
+        <a class="btn btn-outline-primary me-2" href="<%= new_user_session_path %>">Login</a>
+        <a class="btn btn-primary" href="<%= new_user_registration_path %>">Sign Up</a>
+      <% end %>
     </div>
   </div>
 </nav>

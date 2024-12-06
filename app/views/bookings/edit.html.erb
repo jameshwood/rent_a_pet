@@ -1,0 +1,11 @@
+<h1>Edit Booking</h1>
+
+<p>Update the booking dates for <strong><%= @booking.animal.name %></strong>.</p>
+
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :start_date_time, as: :string, label: "Start Date & Time", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :end_date_time, as: :string, label: "End Date & Time", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.button :submit, "Update Booking", class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to "Cancel", booking_path(@booking), class: "btn btn-secondary" %>

@@ -7,6 +7,8 @@
 <p><strong>Start Time:</strong> <%= @booking.start_date_time.strftime("%B %d, %Y %H:%M") %></p>
 <p><strong>End Time:</strong> <%= @booking.end_date_time.strftime("%B %d, %Y %H:%M") %></p>
 
+<%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+
 <% if @booking.reviews.any? %>
   <h2>Review:</h2>
   <ul>
@@ -20,5 +22,9 @@
 <% else %>
   <p>No review for this booking yet.</p>
 <% end %>
+
+<%= link_to "Cancel booking", booking_path(@booking),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+    class: "btn btn-danger" %>
 <button type="button" class="btn btn-success"><%= link_to "Add a review", new_booking_review_path(@booking) %></button>
 </div>

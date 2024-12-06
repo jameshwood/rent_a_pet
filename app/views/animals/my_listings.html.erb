@@ -1,0 +1,41 @@
+<h1 class="centered-title mt-4">Listings</h1>
+
+<div class="animal-grid" data-controller="carousel">
+  <% @animals.each do |animal| %>
+    <div class="animal-card">
+      <!-- Carousel -->
+      <% if animal.photos.attached? %>
+       <div id="carouselAnimal<%= animal.id %>"
+        class="carousel slide"
+        data-carousel="<%= animal.photos.count > 1 ? 'true' : 'false' %>">
+        <div class="carousel-inner">
+          <% animal.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <%= cl_image_tag photo.key, class: "d-block w-100 animal-image", height: 300, width: 400, crop: :fill %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% else %>
+        <!-- Placeholder Image for No Photos -->
+        <img src="/placeholder.jpg" alt="<%= animal.name %>" class="animal-image" />
+      <% end %>
+
+    <div class="animal-container">
+      <div class="animal-row">
+        <div class="animal-info">
+          <h3 class="animal-name"><%= animal.name %></h3>
+          <p class="animal-location">Location: <%= animal.address || "Unknown" %></p>
+          <p class="animal-price">Price/day: $<%= animal.price.to_i %></p>
+        </div>
+        <div class="animal-rating">
+          <span class="rating-star">⭐</span>
+          <span class="rating-value"><%= animal.reviews.any? ? "#{animal.average_rating}" : "N/A" %></span>
+           <%= link_to "Edit listing", edit_animal_path(animal),
+            class: "btn" %>
+        </div>
+      </div>
+    </div>
+    </div>
+  <% end %>
+</div>

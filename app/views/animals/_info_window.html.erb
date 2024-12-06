@@ -1,0 +1,37 @@
+<div class="popup-card">
+  <div class="popup-image-container">
+    <div class="image-carousel">
+      <% if animal.photos.attached? %>
+        <% animal.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, alt: animal.name, class: "carousel-image" %>
+        <% end %>
+      <% else %>
+        <img src="/placeholder.jpg" alt="No photo available" class="carousel-image">
+      <% end %>
+    </div>
+    <!-- Carousel Navigation -->
+    <div class="carousel-controls">
+      <button class="prev">&lt;</button>
+      <button class="next">&gt;</button>
+    </div>
+  </div>
+
+  <!-- Card Details -->
+  <div class="popup-details">
+    <h3><%= animal.name %></h3>
+    <p class="price">
+      <% if animal.price.present? %>
+        <span class="old-price">£<%= animal.price + 20 %></span>
+        <span class="current-price">£<%= animal.price %></span> per day
+      <% else %>
+        <span class="current-price">Price not available</span>
+      <% end %>
+    </p>
+    <div class="rating">
+      <span>⭐</span>
+      <span>
+        <%= animal.reviews.any? ? "#{animal.average_rating} (#{animal.reviews.count})" : "No ratings yet" %>
+      </span>
+    </div>
+  </div>
+</div>
