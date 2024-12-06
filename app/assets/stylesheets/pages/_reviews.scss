@@ -1,0 +1,25 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  h1, h4 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn {
+  border-radius: 50%;
+  background-color: #57745e;
+  border: none;
+  height: 65px;
+  width: 100px;
+  font-size: 15px;
+  margin-top: 15px;
+}

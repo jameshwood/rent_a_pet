@@ -11,7 +11,7 @@
 }
 
 .large-photo {
-  grid-column: span 1; 
+  grid-column: span 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,16 +49,15 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.shadow-box:hover {
-  transform: translate(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
 
 .animal-details {
-  margin-bottom: 10px;
-  list-style-type: none;
   background-color: #F4F4F4;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 15px;
   border-left: 4px solid #FBF1EE;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .review-card {

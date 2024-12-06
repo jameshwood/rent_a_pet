@@ -22,6 +22,29 @@ body {
 
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 @import url("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css");
-@import "/components/search";
-@import "/components/reservation";
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Walter Turncoat", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+p {
+  font-family: "Delius", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Apply Walter Turncoat to buttons and forms
+button, input, select, textarea, label, a, .btn {
+  font-family: "Walter Turncoat", cursive; // Use the same font as headers
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Ensure p tags inside forms use the p font
+form p {
+  font-family: "Delius", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
